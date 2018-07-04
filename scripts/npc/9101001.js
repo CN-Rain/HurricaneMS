@@ -24,6 +24,7 @@ function action(mode, type, selection) {
 			cm.sendNextPrev("But remember, once you get out of here, you will enter a village full with monsters. Well them, good bye!");
 		} else if (status == 2) {
 			cm.warp(40000, 0);
+			//cm.gainExp(3 * cm.getC().getChannelServer().getExpRate());
 			cm.gainExp(3);
 			cm.dispose();
 		} 

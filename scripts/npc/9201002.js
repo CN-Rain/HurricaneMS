@@ -115,7 +115,7 @@ function action(mode, type, selection) {
 					else {
 						// Begin the Wedding o.O
 						em.startInstance(cm.getParty(),cm.getPlayer().getMap());
-						party = cm.getPlayer().getEventInstance().getPlayer();
+						party = cm.getPlayer().getEventInstance().getPlayers();
 						var hname = party.get(0).getName();
 						var wname = party.get(1).getName();
 						var hidd = party.get(0).getId();

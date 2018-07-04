@@ -108,10 +108,10 @@ function action(mode, type, selection) {
 
 function sword() {
 	var sword = new Equip(1302000, 0);
-	sword.setStr(50);
-	sword.setDex(50);
-	sword.setInt(50);
-	sword.setLuk(50);
+	sword.setStr(200);
+	sword.setDex(200);
+	sword.setInt(200);
+	sword.setLuk(200);
 	MapleInventoryManipulator.addFromDrop(cm.getC(), sword, new java.lang.String(), false);
 	cm.playerMessage("You have been given a godly sword!");
 }
