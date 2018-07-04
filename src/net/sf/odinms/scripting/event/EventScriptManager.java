@@ -74,14 +74,18 @@ public class EventScriptManager extends AbstractScriptManager {
 
 	public void init() {
 		for (EventEntry entry : events.values()) {
-			try {
-				((ScriptEngine) entry.iv).put("em", entry.em);
-				entry.iv.invokeFunction("init", (Object) null);
-			} catch (ScriptException ex) {
-				Logger.getLogger(EventScriptManager.class.getName()).log(Level.SEVERE, null, ex);
-			} catch (NoSuchMethodException ex) {
-				Logger.getLogger(EventScriptManager.class.getName()).log(Level.SEVERE, null, ex);
-			}
+                    if (entry != null) {
+                        try {
+                            ((ScriptEngine) entry.iv).put("em", entry.em);
+                            entry.iv.invokeFunction("init", (Object) null);
+                        } catch (ScriptException ex) {
+                            Logger.getLogger(EventScriptManager.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (NoSuchMethodException ex) {
+                            Logger.getLogger(EventScriptManager.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        System.out.println("The method init() has been invoked as null, please fix that error as fast as possible!");
+                    }
 		}
 	}
 
