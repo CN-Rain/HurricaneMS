@@ -241,9 +241,8 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 			DatabaseConnection.setProps(dbProp);
 			DatabaseConnection.getConnection();
 			Connection c = DatabaseConnection.getConnection();
-			PreparedStatement ps;
             try {
-                ps = c.prepareStatement("UPDATE accounts SET loggedin = 0");
+                PreparedStatement ps = c.prepareStatement("UPDATE accounts SET loggedin = 0");
                 ps.executeUpdate();
                 ps = c.prepareStatement("UPDATE characters SET HasMerchant = 0");
                 ps.executeUpdate();
@@ -316,7 +315,6 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 		
 		port = Integer.parseInt(props.getProperty("net.sf.odinms.channel.net.port"));
 		ip = props.getProperty("net.sf.odinms.channel.net.interface") + ":" + port;
-		
 		ByteBuffer.setUseDirectBuffers(false);
 		ByteBuffer.setAllocator(new SimpleByteBufferAllocator());
 

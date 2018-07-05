@@ -32,6 +32,7 @@ public enum RecvPacketOpcode implements WritableIntValueHolder {
 	// LOGIN
 	AFTER_LOGIN,
 	SERVERLIST_REQUEST,
+        GUEST_LOGIN,
 	SERVERLIST_REREQUEST,
 	CHARLIST_REQUEST,
 	CHAR_SELECT,
@@ -121,6 +122,7 @@ public enum RecvPacketOpcode implements WritableIntValueHolder {
 	SKILL_MACRO,
 	NOTE_ACTION,
 	MAPLETV,
+        PLAYER_UPDATE,
 	ENABLE_ACTION,
 	USE_CATCH_ITEM,
 	USE_MOUNT_FOOD,
@@ -131,12 +133,13 @@ public enum RecvPacketOpcode implements WritableIntValueHolder {
 	PASSIVE_ENERGY,
 	SPOUSE_CHAT,
 	REPORT_PLAYER,
+        PET_AUTO_POT,
 	GRENADE,
 	UNSTUCK,
 	MTS_OP,
 	DISCONNECT,
 	ALLIANCE_OPERATION,
-	PET_AUTO_POT,
+        PLAYER_DC,
 	OPEN_MERCHANT
 	;
 

@@ -112,7 +112,7 @@ public class PlayerLoggedinHandler extends AbstractMaplePacketHandler {
 		
         Connection con = DatabaseConnection.getConnection();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT skillid,starttime,length FROM cooldowns WHERE characterid = ?");
+            PreparedStatement ps = con.prepareStatement("SELECT skillid,starttime,length FROM cooldowns WHERE charid = ?");
             ps.setInt(1, c.getPlayer().getId());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -121,7 +121,7 @@ public class PlayerLoggedinHandler extends AbstractMaplePacketHandler {
                 }
                 c.getPlayer().giveCoolDowns(rs.getInt("skillid"), rs.getLong("starttime"), rs.getLong("length")); 
             }
-            ps = con.prepareStatement("DELETE FROM cooldowns WHERE characterid = ?");
+            ps = con.prepareStatement("DELETE FROM cooldowns WHERE charid = ?");
             ps.setInt(1, c.getPlayer().getId());
             ps.executeUpdate();
             ps.close();
