@@ -104,10 +104,14 @@ public class MapleQuestAction {
 		switch (type) {
 			case EXP:
 				status = c.getQuest(quest);
-				if (status.getStatus() == MapleQuestStatus.Status.NOT_STARTED && status.getForfeited() > 0)
+				if (status.getStatus() == MapleQuestStatus.Status.NOT_STARTED && status.getForfeited() > 0) {
 					break;
-				c.gainExp(MapleDataTool.getInt(data) * ChannelServer.getInstance(c.getClient().getChannel()).getExpRate(), true, true);
-				break;
+                                }
+				if (c.getLevel() < 10) {
+                                c.gainExp(MapleDataTool.getInt(data) * (1), true, true);
+                                } else {
+                                    c.gainExp(MapleDataTool.getInt(data) * (4), true, true);
+				}
 			case ITEM:
 				MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
 				// first check for randomness in item selection
