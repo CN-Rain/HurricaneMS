@@ -42,7 +42,7 @@ public class RandomMapEffectEngine {
 		for (ChannelServer cs : ChannelServer.getAllInstances()) {
 			if (Math.random() < 0.3) {
 				WeatherEntry selection = entries[(int)(Math.random() * entries.length)];
-				int calc = Math.round(21 * selection.getRate());
+				int calc = Math.round(3 * selection.getRate());
 				cs.broadcastPacket(MaplePacketCreator.serverNotice(6, "[EXP Random Event] EXP Rate has been changed to " + calc + "x."));
 				cs.broadcastPacket(MaplePacketCreator.startMapEffect("The EXP Rate has been changed to " + calc + "x!", selection.getId(), true));
 				cs.setExpRate(calc);

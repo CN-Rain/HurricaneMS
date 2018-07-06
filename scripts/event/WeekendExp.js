@@ -89,7 +89,7 @@ function refreshDates(calendar) {
 }
 
 function resetServerMessage() {
-	em.getChannelServer().setServerMessage("Welcome to FantiMS!");
+	em.getChannelServer().setServerMessage("Welcome to MapleSyrup!");
 }
 
 function cancelSchedule() {

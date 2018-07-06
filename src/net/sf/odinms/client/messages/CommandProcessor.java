@@ -297,9 +297,9 @@ public class CommandProcessor implements CommandProcessorMBean {
 	 */
 	private boolean processCommandInternal(MapleClient c, MessageCallback mc, String line) {
 		MapleCharacter player = c.getPlayer();
-		if (line.charAt(0) == '!' || line.charAt(0) == '~' || line.charAt(0) == '@') {
-			if (line.charAt(0) == '@') {
-				mc.dropMessage("If you're trying to use a player command, use ~ instead of @.");
+		if (line.charAt(0) == '!' || line.charAt(0) == '@' || line.charAt(0) == '@') {
+			if (line.charAt(0) == '~') {
+				mc.dropMessage("If you're trying to use a player command, use @.");
 				return false;
 			}
 			String[] splitted = line.split(" ");
@@ -325,7 +325,7 @@ public class CommandProcessor implements CommandProcessorMBean {
 				} else {
 					if (definitionCommandPair == null || player.getGMLevel() >= definitionCommandPair.getDefinition().getRequiredLevel()) {
 						mc.dropMessage("Command " + splitted[0] + " does not exist or you do not have the required priviledges.");
-						if (line.charAt(0) == '~') return false;
+						if (line.charAt(0) == '@') return false;
 						return true;
 					}
 				}

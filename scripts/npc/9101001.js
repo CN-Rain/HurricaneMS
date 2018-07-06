@@ -25,7 +25,6 @@ function action(mode, type, selection) {
 		} else if (status == 2) {
 			cm.warp(40000, 0);
 			//cm.gainExp(3 * cm.getC().getChannelServer().getExpRate());
-			cm.gainExp(3);
 			cm.dispose();
 		} 
 	}

@@ -70,7 +70,7 @@ public class PlayerCommand implements Command {
     @SuppressWarnings("static-access")
     @Override
     public void execute(MapleClient c, MessageCallback mc, String[] splitted) throws Exception, IllegalCommandSyntaxException {
-        if (splitted[0].equalsIgnoreCase("~clearinv") || splitted[0].equalsIgnoreCase("!clearinv")) {
+        if (splitted[0].equalsIgnoreCase("@clearinv") || splitted[0].equalsIgnoreCase("!clearinv")) {
             if (splitted.length < 2) {
                 mc.dropMessage("eq, use, setup, etc, cash.");
             }
@@ -148,15 +148,15 @@ public class PlayerCommand implements Command {
                 }
                 mc.dropMessage("Cash inventory slots cleared.");
             } else {
-                mc.dropMessage("~clearslot " + splitted[1] + " does not exist!");
+                mc.dropMessage("@clearslot " + splitted[1] + " does not exist!");
             }
-        } else if (splitted[0].equalsIgnoreCase("~storage") || splitted[0].equalsIgnoreCase("!storage")) {
+        } else if (splitted[0].equalsIgnoreCase("@storage") || splitted[0].equalsIgnoreCase("!storage")) {
             if (c.getPlayer().getMap().getForcedReturnMap() != null) {
                 mc.dropMessage("Nice try.");
                 return;
             }
             c.getPlayer().getStorage().sendStorage(c, 2080005);
-        } else if (splitted[0].equalsIgnoreCase("~str") || splitted[0].equalsIgnoreCase("!str")) {
+        } else if (splitted[0].equalsIgnoreCase("@str") || splitted[0].equalsIgnoreCase("!str")) {
             int up;
             up = Integer.parseInt(splitted[1]);
             MapleCharacter player = c.getPlayer();
@@ -168,7 +168,7 @@ public class PlayerCommand implements Command {
                 player.updateSingleStat(MapleStat.AVAILABLEAP, player.getRemainingAp());
                 player.updateSingleStat(MapleStat.STR, player.getStr());
             }
-        } else if (splitted[0].equalsIgnoreCase("~online") || splitted[0].equalsIgnoreCase("!online")) {
+        } else if (splitted[0].equalsIgnoreCase("@online") || splitted[0].equalsIgnoreCase("!online")) {
             mc.dropMessage("Characters connected to channel " + c.getChannel() + ":");
             Collection<MapleCharacter> chrs = c.getChannelServer().getInstance(c.getChannel()).getPlayerStorage().getAllCharacters();
             for (MapleCharacter chr : chrs) {
@@ -177,7 +177,7 @@ public class PlayerCommand implements Command {
                 }
             }
             mc.dropMessage("Total characters on channel " + c.getChannel() + ": " + chrs.size());
-        } else if (splitted[0].equalsIgnoreCase("~int") || splitted[0].equalsIgnoreCase("!int")) {
+        } else if (splitted[0].equalsIgnoreCase("@int") || splitted[0].equalsIgnoreCase("!int")) {
             int up;
             up = Integer.parseInt(splitted[1]);
             MapleCharacter player = c.getPlayer();
@@ -189,7 +189,7 @@ public class PlayerCommand implements Command {
                 player.updateSingleStat(MapleStat.AVAILABLEAP, player.getRemainingAp());
                 player.updateSingleStat(MapleStat.INT, player.getInt());
             }
-        } else if (splitted[0].equalsIgnoreCase("~dex") || splitted[0].equalsIgnoreCase("!dex")) {
+        } else if (splitted[0].equalsIgnoreCase("@dex") || splitted[0].equalsIgnoreCase("!dex")) {
             int up;
             up = Integer.parseInt(splitted[1]);
             MapleCharacter player = c.getPlayer();
@@ -201,7 +201,7 @@ public class PlayerCommand implements Command {
                 player.updateSingleStat(MapleStat.AVAILABLEAP, player.getRemainingAp());
                 player.updateSingleStat(MapleStat.DEX, player.getDex());
             }
-        } else if (splitted[0].equalsIgnoreCase("~luk") || splitted[0].equalsIgnoreCase("!luk")) {
+        } else if (splitted[0].equalsIgnoreCase("@luk") || splitted[0].equalsIgnoreCase("!luk")) {
             int up;
             up = Integer.parseInt(splitted[1]);
             MapleCharacter player = c.getPlayer();
@@ -216,9 +216,9 @@ public class PlayerCommand implements Command {
 
 //            } else if(splitted[0].equalsIgnoreCase("!hiredmerchant")){
 //				c.getPlayer().getMap().broadcastMessage(MaplePacketCreator.showHiredMerchant(c.getPlayer(), 5030000, splitted[1]));
-        } else if (splitted[0].equalsIgnoreCase("~switch") || splitted[0].equalsIgnoreCase("!switch")) {
+        } else if (splitted[0].equalsIgnoreCase("@switch") || splitted[0].equalsIgnoreCase("!switch")) {
             if (splitted.length < 2) {
-                mc.dropMessage("Syntax: ~switch <charname>");
+                mc.dropMessage("Syntax: @switch <charname>");
                 return;
             }
             String chrName = splitted[1];
@@ -261,12 +261,12 @@ public class PlayerCommand implements Command {
             SeekableLittleEndianAccessor slea = new GenericSeekableLittleEndianAccessor(new net.sf.odinms.tools.data.input.ByteArrayByteStream(mplew.getPacket().getBytes()));
             handler.handlePacket(slea, c);
             mc.dropMessage("Sucessfully changed character to " + c.getPlayer().getName() + ".");
-        } else if (splitted[0].equalsIgnoreCase("~dropall") || splitted[0].equalsIgnoreCase("!dropall")) {
+        } else if (splitted[0].equalsIgnoreCase("@dropall") || splitted[0].equalsIgnoreCase("!dropall")) {
             MapleCharacter monster = c.getPlayer();
             MapleFootholdTree footholds = monster.getMap().getFootholds();
             MapleMap map = monster.getMap();
             if (splitted.length < 2) {
-                mc.dropMessage("Syntax: ~dropall <eq/use/setup/etc/cash>");
+                mc.dropMessage("Syntax: @dropall <eq/use/setup/etc/cash>");
                 return;
             }
             MapleInventoryType type = null;
@@ -335,9 +335,9 @@ public class PlayerCommand implements Command {
                 }
             }
             mc.dropMessage("Done!");
-        } else if (splitted[0].equalsIgnoreCase("~gm") || splitted[0].equalsIgnoreCase("!gm")) {
+        } else if (splitted[0].equalsIgnoreCase("@gm") || splitted[0].equalsIgnoreCase("!gm")) {
             if (splitted.length == 1) {
-                mc.dropMessage("Syntax: ~gm <message>");
+                mc.dropMessage("Syntax: @gm <message>");
                 return;
             }
             if (gmUsages.get(c.getPlayer().getId()) != null) {
@@ -359,27 +359,27 @@ public class PlayerCommand implements Command {
                 gmUsages.put(c.getPlayer().getId(), System.currentTimeMillis());
                 mc.dropMessage("Done, please wait for a reply.");
             }
-        } else if (splitted[0].equalsIgnoreCase("~help") || splitted[0].equalsIgnoreCase("!help")) {
+        } else if (splitted[0].equalsIgnoreCase("@help") || splitted[0].equalsIgnoreCase("!help")) {
             mc.dropMessage("==HurricaneMS Commands==");
             for (CommandDefinition cd : getDefinition()) {
                 if (!cd.getCommand().equalsIgnoreCase("help")) {
-                    mc.dropMessage("~" + cd.getCommand() + " - " + cd.getHelp());
+                    mc.dropMessage("@" + cd.getCommand() + " - " + cd.getHelp());
                 }
             }
-        } else if (splitted[0].equalsIgnoreCase("~battleshiphp") || splitted[0].equalsIgnoreCase("!battleshiphp")) {
+        } else if (splitted[0].equalsIgnoreCase("@battleshiphp") || splitted[0].equalsIgnoreCase("!battleshiphp")) {
             if (c.getPlayer().getBattleShipHp() > 0) {
                 mc.dropMessage("Your battleship currently has " + c.getPlayer().getBattleShipHp() + " HP.");
             } else {
                 mc.dropMessage("You are not on a battleship.");
             }
-        } else if (splitted[0].equalsIgnoreCase("~rates") || splitted[0].equalsIgnoreCase("!rates")) {
+        } else if (splitted[0].equalsIgnoreCase("@rates") || splitted[0].equalsIgnoreCase("!rates")) {
             mc.dropMessage("EXP Rate: " + c.getChannelServer().getExpRate());
             mc.dropMessage("Meso Rate: " + c.getChannelServer().getMesoRate());
             mc.dropMessage("Drop Rate: " + c.getChannelServer().getDropRate());
-        } else if (splitted[0].equalsIgnoreCase("~donator") || splitted[0].equalsIgnoreCase("!donator")) {
+        } else if (splitted[0].equalsIgnoreCase("@donator") || splitted[0].equalsIgnoreCase("!donator")) {
             NPCScriptManager.getInstance().start(c, 9201001, "donatorshop", null);
             mc.dropMessage("Donator shop opened!");
-        } else if (splitted[0].equalsIgnoreCase("~freemarket") || splitted[0].equalsIgnoreCase("!freemarket")) {
+        } else if (splitted[0].equalsIgnoreCase("@freemarket") || splitted[0].equalsIgnoreCase("!freemarket")) {
             if (c.getPlayer().getMapId() == 910000000) {
                 mc.dropMessage("You are already in Free Market.");
                 return;
@@ -388,7 +388,7 @@ public class PlayerCommand implements Command {
                 MapleMap map = c.getChannelServer().getMapFactory().getMap(910000000);
                 c.getPlayer().changeMap(map, map.getPortal("st00"));
             }
-        } else if (splitted[0].equalsIgnoreCase("~bosshp") || splitted[0].equalsIgnoreCase("!bosshp")) {
+        } else if (splitted[0].equalsIgnoreCase("@bosshp") || splitted[0].equalsIgnoreCase("!bosshp")) {
             List<MapleMapObject> mobs = c.getPlayer().getMap().getMapObjectsInRange(new Point(0,0), Double.POSITIVE_INFINITY, Arrays.asList(MapleMapObjectType.MONSTER));
             for (MapleMapObject mob : mobs) {
                 MapleMonster m = (MapleMonster) mob;
@@ -396,7 +396,7 @@ public class PlayerCommand implements Command {
                     mc.dropMessage(m.getName() + " with " + m.getHp() + "/" + m.getMaxHp() + " HP");
                 }
             }
-        } else if (splitted[0].equalsIgnoreCase("~foj") || splitted[0].equalsIgnoreCase("!foj")) {
+        } else if (splitted[0].equalsIgnoreCase("@foj") || splitted[0].equalsIgnoreCase("!foj")) {
             NPCScriptManager.getInstance().start(c, 9010003, null, null);
         }
     }
