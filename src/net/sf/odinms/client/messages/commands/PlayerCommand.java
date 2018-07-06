@@ -366,6 +366,9 @@ public class PlayerCommand implements Command {
                     mc.dropMessage("@" + cd.getCommand() + " - " + cd.getHelp());
                 }
             }
+         } else if (splitted[0].equalsIgnoreCase("@partyfix")) {
+                    c.getPlayer().setParty(null);
+                    mc.dropMessage("Please recreate the party.");    
         } else if (splitted[0].equalsIgnoreCase("@battleshiphp") || splitted[0].equalsIgnoreCase("!battleshiphp")) {
             if (c.getPlayer().getBattleShipHp() > 0) {
                 mc.dropMessage("Your battleship currently has " + c.getPlayer().getBattleShipHp() + " HP.");
@@ -422,6 +425,7 @@ public class PlayerCommand implements Command {
 			new CommandDefinition("dropall", "", "Drops all items in your inventory.", 0),
 			new CommandDefinition("gm", "", "Sends all online GameMasters a message.", 0),
 			new CommandDefinition("help", "", "Shows help.", 0),
+                        new CommandDefinition("partyfix", "", "Fixes the party so you can create a Party.", 0),
 			new CommandDefinition("battleshiphp", "", "Shows your battleship HP.", 0),
 			new CommandDefinition("rates", "", "Shows the current rates.", 0),
 			new CommandDefinition("donator", "", "Opens the donator shop.", 0),
