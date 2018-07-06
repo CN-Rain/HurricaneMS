@@ -482,6 +482,11 @@ public class AdminCommand implements Command {
             chr.assassinate();
         } else if (splitted[0].equalsIgnoreCase("!randomevent")) {
             c.getChannelServer().randomEvents.doEvent();
+            mc.dropMessage("Activating all random events in channel " + cserv.getChannel() + "...");
+        } else if (splitted[0].equalsIgnoreCase("!stoprandomevent")) {
+            c.getChannelServer().randomEvents.deactivateEvent(true);
+            mc.dropMessage("Stoping all random events in channel " + cserv.getChannel() + "...");
+            
         } else if (splitted[0].equalsIgnoreCase("!randomexp")) {
             c.getChannelServer().randomMapEffects.doEvent();
         } else if (splitted[0].equalsIgnoreCase("!level")) {

@@ -23,13 +23,28 @@ public class RandomEventEngine {
 	}
 	
 	public void activateEvent() {
-		TimerManager.getInstance().schedule(new Runnable() {
+            if(deactivateEvent(false)) {
+                TimerManager.getInstance().schedule(new Runnable() {
 			public void run() {
 				doEvent();
 				activateEvent();
 			}
 		} , (int) ((Math.random() * 30) * 60000));
+            }
+            else {
+                // Doesn't work.
+                return;
+            }
 	}
+        
+        public boolean deactivateEvent(boolean activation) {
+           if (activation) {
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
 	
 	public void doEvent() {
 		int times = (int) (8 * Math.random());
