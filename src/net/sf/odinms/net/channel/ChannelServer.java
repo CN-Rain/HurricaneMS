@@ -143,9 +143,9 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 	private int lordId = 0;
 	
 	final String[] botMessages = {
-		"HurricaneMS forums are at http://hurricanems.no-ip.biz/forum/index.php! Don't forget to register!",
-		"HurricaneMS is NOT a repack.",
-		"Make sure you vote for HurricaneMS every twelve hours! Thanks!"
+		"MapleSyrup forums are at http://syrupnetworks.com/forum! Don't forget to register!",
+		"MapleSyrup is a custom server.",
+		"Make sure you vote for MapleSyrup every twelve hours! Thanks!"
 	};
 
 	private ChannelServer(String key) {
@@ -695,7 +695,7 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 	public static void main(String args[]) throws FileNotFoundException, IOException, NotBoundException,
 											InstanceAlreadyExistsException, MBeanRegistrationException,
 											NotCompliantMBeanException, MalformedObjectNameException {
-		System.out.println("Hai, welcome to HurricaneMS! <3");
+		System.out.println("Hai, MapleSyrup is starting up! <3");
 		initialProp = new Properties();
 		initialProp.load(new FileReader(System.getProperty("net.sf.odinms.channel.config")));
 		Registry registry = LocateRegistry.getRegistry(initialProp.getProperty("net.sf.odinms.world.host"), Registry.REGISTRY_PORT, new SslRMIClientSocketFactory());

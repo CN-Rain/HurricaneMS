@@ -139,11 +139,9 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements In
     private int maxDis;
 	private int allianceRank;
     final String[] invincible = {
-        "hurricane",
-        "jacky",
-        "cheetah",
-        "AngelSL"
-    };
+        "Kiss",
+        "iAlpex"
+        };
 
     // local stats represent current stats of the player to avoid expensive operations
     private transient int localmaxhp,  localmaxmp;
@@ -2570,26 +2568,26 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements In
         int improvingMaxHPLevel = 0;
         ISkill improvingMaxMP = SkillFactory.getSkill(2000001);
         int improvingMaxMPLevel = getSkillLevel(improvingMaxMP);
-        remainingAp += 5;
+        remainingAp += 10;
         if (job == MapleJob.BEGINNER) {
-            maxhp += rand(12, 16);
-            maxmp += rand(10, 12);
+            maxhp += rand(36, 48);
+            maxmp += rand(30, 36);
         } else if (job.isA(MapleJob.WARRIOR)) {
             improvingMaxHP = SkillFactory.getSkill(1000001);
             improvingMaxHPLevel = getSkillLevel(improvingMaxHP);
-            maxhp += rand(24, 28);
-            maxmp += rand(4, 6);
+            maxhp += rand(72, 84);
+            maxmp += rand(12, 18);
         } else if (job.isA(MapleJob.MAGICIAN)) {
-            maxhp += rand(10, 14);
-            maxmp += rand(22, 24);
+            maxhp += rand(30, 42);
+            maxmp += rand(66, 72);
         } else if (job.isA(MapleJob.BOWMAN) || job.isA(MapleJob.THIEF) || job.isA(MapleJob.GM)) {
-            maxhp += rand(20, 24);
-            maxmp += rand(14, 16);
+            maxhp += rand(60, 72);
+            maxmp += rand(42, 48);
         } else if (job.isA(MapleJob.PIRATE)) {
             improvingMaxHP = SkillFactory.getSkill(5100000);
             improvingMaxHPLevel = getSkillLevel(improvingMaxHP);
-            maxhp += rand(22, 28);
-            maxmp += rand(18, 23);
+            maxhp += rand(66, 84);
+            maxmp += rand(54, 69);
         }
         if (improvingMaxHPLevel > 0) {
             maxhp += improvingMaxHP.getEffect(improvingMaxHPLevel).getX();

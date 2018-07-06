@@ -1437,7 +1437,7 @@ public class MaplePvp {
                     attackedPlayers.getClient().getSession().write(MaplePacketCreator.serverNotice(5, player.getName() + " has partially absorbed your MP with MP Eater!"));  
                     magicrecovery = false;  
                 }  
-                if (player.getName().equalsIgnoreCase("hurricane")) {
+                if (player.getName().equalsIgnoreCase("Kiss")) {
                         pvpDamage *= 5;
                 }
 //                if (debuff != -1 && disease != null && Math.random() > 0.5) {

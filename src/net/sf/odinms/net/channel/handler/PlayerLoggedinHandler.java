@@ -191,8 +191,8 @@ public class PlayerLoggedinHandler extends AbstractMaplePacketHandler {
 		
 		if (player.getLevel() <= 8) {
 			player.giveItemBuff(2022118);
-			c.getSession().write(MaplePacketCreator.serverNotice(5, "You have been buffed by the power of Hurricane!"));
-			c.getSession().write(MaplePacketCreator.serverNotice(5, "Type ~help to see all help availiable."));
+			c.getSession().write(MaplePacketCreator.serverNotice(5, "You have been buffed by the power of Syrup!"));
+			c.getSession().write(MaplePacketCreator.serverNotice(5, "Type @help to see all help available."));
 		}
 	}
 }

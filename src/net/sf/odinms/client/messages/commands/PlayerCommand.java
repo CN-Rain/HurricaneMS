@@ -360,7 +360,7 @@ public class PlayerCommand implements Command {
                 mc.dropMessage("Done, please wait for a reply.");
             }
         } else if (splitted[0].equalsIgnoreCase("@help") || splitted[0].equalsIgnoreCase("!help")) {
-            mc.dropMessage("==HurricaneMS Commands==");
+            mc.dropMessage("==MapleSyrup Commands==");
             for (CommandDefinition cd : getDefinition()) {
                 if (!cd.getCommand().equalsIgnoreCase("help")) {
                     mc.dropMessage("@" + cd.getCommand() + " - " + cd.getHelp());
