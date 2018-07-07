@@ -33,6 +33,11 @@ import javax.management.ObjectName;
 
 import net.sf.odinms.client.messages.MessageCallback;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+
+
 public class TimerManager implements TimerManagerMBean {
 	private static org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(TimerManager.class);
 	private static TimerManager instance = new TimerManager();
@@ -55,7 +60,7 @@ public class TimerManager implements TimerManagerMBean {
 		if (ses != null && !ses.isShutdown() && !ses.isTerminated()) {
 			return; //starting the same timermanager twice is no - op
 		}
-		ScheduledThreadPoolExecutor stpe = new ScheduledThreadPoolExecutor(4, new ThreadFactory() {
+		ScheduledThreadPoolExecutor stpe = new ScheduledThreadPoolExecutor(10, new ThreadFactory() {
 			private final AtomicInteger threadNumber = new AtomicInteger(1);
 			@Override
 			public Thread newThread(Runnable r) {
@@ -64,7 +69,7 @@ public class TimerManager implements TimerManagerMBean {
 				return t;
 			}
 		});
-		stpe.setMaximumPoolSize(4);
+		stpe.setMaximumPoolSize(10); // Extended the Maximum Pool Size for Threading in the server.
 		stpe.setContinueExistingPeriodicTasksAfterShutdownPolicy(false);
 		ses = stpe;
 	}
