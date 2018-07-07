@@ -488,7 +488,7 @@ public class AdminCommand implements Command {
                 mc.dropMessage("Syntaxis: !stoprandomevent part1/part2");
                 return;
             }
-            String partString = splitted[1];
+            String partString = splitted[2];
             if(partString.equalsIgnoreCase("part1")) {
                 c.getChannelServer().randomEvents.deactivatePart1Event(true);
                 mc.dropMessage("Deactivating PART1 random events in channel " + cserv.getChannel() + "...");
