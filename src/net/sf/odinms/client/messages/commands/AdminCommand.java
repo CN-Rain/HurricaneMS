@@ -491,9 +491,11 @@ public class AdminCommand implements Command {
             String partString = splitted[1];
             if(partString.equalsIgnoreCase("part1")) {
                 c.getChannelServer().randomEvents.deactivatePart1Event(true);
+                mc.dropMessage("Deactivating PART1 random events in channel " + cserv.getChannel() + "...");
             }
             else if(partString.equalsIgnoreCase("part2")) {
                 c.getChannelServer().randomMapEffects.deactivatePart2Event(true);
+                mc.dropMessage("Deactivating PART2 random events in channel " + cserv.getChannel() + "...");
             }
             else {
                 mc.dropMessage("You have entered a wrong part, choose part1 or part2!");
