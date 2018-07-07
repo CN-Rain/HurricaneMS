@@ -769,7 +769,7 @@ public class AdminCommand implements Command {
                     new CommandDefinition("kill", "", "", 4),
                     new CommandDefinition("randomevent", "", "", 4),
                     // New Command Definition for Stoprandomevent ~ Credits Ivan
-                    new CommandDefinition("stoprandomevent", "true/false in the source code not ingame!", "This command is used to turn off the randomevents!", 9),
+                    new CommandDefinition("stoprandomevent", "true/false in the source code not ingame!", "This command is used to turn off the randomevents!", 6),
                             
                     new CommandDefinition("randomexp", "", "", 4),
                     new CommandDefinition("level", "", "", 4),
