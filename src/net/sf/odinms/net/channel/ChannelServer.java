@@ -143,8 +143,8 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 	private int lordId = 0;
 	
 	final String[] botMessages = {
-		"MapleSyrup forums are at http://syrupnetworks.com/forum! Don't forget to register!",
-		"MapleSyrup is a custom server.",
+		"MapleSyrup forums are at http://syrupnetworks.com/forum/index.php! Don't forget to register!",
+		"MapleSyrup is NOT a repack.",
 		"Make sure you vote for MapleSyrup every twelve hours! Thanks!"
 	};
 
@@ -241,8 +241,9 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 			DatabaseConnection.setProps(dbProp);
 			DatabaseConnection.getConnection();
 			Connection c = DatabaseConnection.getConnection();
+			PreparedStatement ps;
             try {
-                PreparedStatement ps = c.prepareStatement("UPDATE accounts SET loggedin = 0");
+                ps = c.prepareStatement("UPDATE accounts SET loggedin = 0");
                 ps.executeUpdate();
                 ps = c.prepareStatement("UPDATE characters SET HasMerchant = 0");
                 ps.executeUpdate();
@@ -315,6 +316,7 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 		
 		port = Integer.parseInt(props.getProperty("net.sf.odinms.channel.net.port"));
 		ip = props.getProperty("net.sf.odinms.channel.net.interface") + ":" + port;
+		
 		ByteBuffer.setUseDirectBuffers(false);
 		ByteBuffer.setAllocator(new SimpleByteBufferAllocator());
 
@@ -341,11 +343,11 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 			final ChannelServer serv = this;
 			tMan.schedule(new Runnable() {
 				public void run() {
-					serv.broadcastPacket(MaplePacketCreator.serverNotice(6, "[Bot] " + 
+					serv.broadcastPacket(MaplePacketCreator.serverNotice(6, "[MapleSyrup Bot] " + 
 						serv.botMessages[(int) (Math.random() * serv.botMessages.length)]));
 					tMan.schedule(new Runnable() {
 						public void run() {
-							serv.broadcastPacket(MaplePacketCreator.serverNotice(6, "[Bot] " + 
+							serv.broadcastPacket(MaplePacketCreator.serverNotice(6, "[MapleSyrup Bot] " + 
 									serv.botMessages[(int) (Math.random() * serv.botMessages.length)]));
 						}
 					}, 20 * 60000 + (int) (Math.random() * 10000));
@@ -695,7 +697,7 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 	public static void main(String args[]) throws FileNotFoundException, IOException, NotBoundException,
 											InstanceAlreadyExistsException, MBeanRegistrationException,
 											NotCompliantMBeanException, MalformedObjectNameException {
-		System.out.println("Hai, MapleSyrup is starting up! <3");
+		System.out.println("Hai, welcome to MapleSyrup v62! <3");
 		initialProp = new Properties();
 		initialProp.load(new FileReader(System.getProperty("net.sf.odinms.channel.config")));
 		Registry registry = LocateRegistry.getRegistry(initialProp.getProperty("net.sf.odinms.world.host"), Registry.REGISTRY_PORT, new SslRMIClientSocketFactory());
