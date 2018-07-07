@@ -484,7 +484,21 @@ public class AdminCommand implements Command {
             c.getChannelServer().randomEvents.doEvent();
             mc.dropMessage("Activating all random events in channel " + cserv.getChannel() + "...");
         } else if (splitted[0].equalsIgnoreCase("!stoprandomevent")) {
-            c.getChannelServer().randomEvents.deactivateEvent(true);
+            if (splitted.length != 3) {
+                mc.dropMessage("Syntaxis: !stoprandomevent part1/part2");
+                return;
+            }
+            String partString = splitted[1];
+            if(partString.equalsIgnoreCase("part1")) {
+                c.getChannelServer().randomEvents.deactivatePart1Event(true);
+            }
+            else if(partString.equalsIgnoreCase("part2")) {
+                c.getChannelServer().randomMapEffects.deactivatePart2Event(true);
+            }
+            else {
+                mc.dropMessage("You have entered a wrong part, choose part1 or part2!");
+            }
+            //c.getChannelServer().randomEvents.deactivateEvent(true);
             mc.dropMessage("Stoping all random events in channel " + cserv.getChannel() + "...");
             
         } else if (splitted[0].equalsIgnoreCase("!randomexp")) {

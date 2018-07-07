@@ -30,19 +30,34 @@ public class RandomMapEffectEngine {
 	}
 	
 	public void activateEvent() {
-		TimerManager.getInstance().schedule(new Runnable() {
+            if(deactivatePart2Event(false)) {
+                TimerManager.getInstance().schedule(new Runnable() {
 			public void run() {
 				doEvent();
 				activateEvent();
 			}
-		} , (int) ((Math.random() * 60) * 60000));
+		} , (int) ((Math.random() * 30) * 60000));
+            }
+            else {
+                // Doesn't work [PART2].
+                return;
+            }
 	}
+        
+        public boolean deactivatePart2Event(boolean activation) {
+           if (activation) {
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
 	
 	public void doEvent() {
 		for (ChannelServer cs : ChannelServer.getAllInstances()) {
 			if (Math.random() < 0.3) {
 				WeatherEntry selection = entries[(int)(Math.random() * entries.length)];
-				int calc = Math.round(3 * selection.getRate());
+				int calc = Math.round(21 * selection.getRate());
 				cs.broadcastPacket(MaplePacketCreator.serverNotice(6, "[EXP Random Event] EXP Rate has been changed to " + calc + "x."));
 				cs.broadcastPacket(MaplePacketCreator.startMapEffect("The EXP Rate has been changed to " + calc + "x!", selection.getId(), true));
 				cs.setExpRate(calc);

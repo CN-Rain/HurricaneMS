@@ -10,7 +10,9 @@ import net.sf.odinms.tools.MaplePacketCreator;
 /**
  *
  * @author David
- */
+ * @modification Ivan
+ * 
+ */ 
 public class RandomEventEngine {
 	public static final RandomEvent events[] = {
 		new RandomEvent(RandomEventType.MAP, 923000100, "[Random Event] Someone wants to see you."), //Cold Cave
@@ -23,7 +25,7 @@ public class RandomEventEngine {
 	}
 	
 	public void activateEvent() {
-            if(deactivateEvent(false)) {
+            if(deactivatePart1Event(false)) {
                 TimerManager.getInstance().schedule(new Runnable() {
 			public void run() {
 				doEvent();
@@ -32,12 +34,12 @@ public class RandomEventEngine {
 		} , (int) ((Math.random() * 30) * 60000));
             }
             else {
-                // Doesn't work.
+                // Doesn't work [PART1].
                 return;
             }
 	}
         
-        public boolean deactivateEvent(boolean activation) {
+        public boolean deactivatePart1Event(boolean activation) {
            if (activation) {
                return true;
            }
