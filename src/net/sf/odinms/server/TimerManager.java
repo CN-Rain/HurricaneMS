@@ -73,8 +73,18 @@ public class TimerManager implements TimerManagerMBean {
         
         
 	public void stop() {
+           if (ses.isShutdown() || ses.isTerminated()) {
+               log.warn("Trying to reconnect the executor!");
+               reconnectExecutor();
+           }
+           else {
+               ses.shutdown();
+           }
+	}
+        
+        public void reconnectExecutor() {
             if (ses == null && ses.isShutdown() && ses.isTerminated()) {
-                    ScheduledThreadPoolExecutor stpe = new ScheduledThreadPoolExecutor(10, new ThreadFactory() {
+                ScheduledThreadPoolExecutor stpe = new ScheduledThreadPoolExecutor(10, new ThreadFactory() {
 			private final AtomicInteger threadNumber = new AtomicInteger(1);
 			@Override
 			public Thread newThread(Runnable r) {
@@ -83,14 +93,13 @@ public class TimerManager implements TimerManagerMBean {
 				return t;
 			}
                     });
-                    stpe.setMaximumPoolSize(10);
-                    stpe.setContinueExistingPeriodicTasksAfterShutdownPolicy(true);
-                    ses = stpe;
-                }
-            else {
-                ses.shutdown();
+                stpe.setMaximumPoolSize(10);
+                stpe.setContinueExistingPeriodicTasksAfterShutdownPolicy(true);
             }
-	}
+            else {
+                log.error("The executor could not be reconnected.");
+            }
+        }
 	
 	public ScheduledFuture<?> register(Runnable r, long repeatTime, long delay) {
 		return ses.scheduleAtFixedRate(new LoggingSaveRunnable(r), delay, repeatTime, TimeUnit.MILLISECONDS);
