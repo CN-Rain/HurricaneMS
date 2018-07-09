@@ -22,6 +22,7 @@
 package net.sf.odinms.server;
 
 import java.lang.management.ManagementFactory;
+import java.util.Set;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;
@@ -56,17 +57,6 @@ public class TimerManager implements TimerManagerMBean {
 			return; //starting the same timermanager twice is no - op
 		}
                 
-                if (ses == null && ses.isShutdown() && ses.isTerminated()) {
-                    ScheduledThreadPoolExecutor stpe = new ScheduledThreadPoolExecutor(10, new ThreadFactory() {
-			private final AtomicInteger threadNumber = new AtomicInteger(1);
-			@Override
-			public Thread newThread(Runnable r) {
-				Thread t = new Thread(r);
-				t.setName("Timermanager-Worker-" + threadNumber.getAndIncrement());
-				return t;
-			}
-                    });
-                }
 		ScheduledThreadPoolExecutor stpe = new ScheduledThreadPoolExecutor(10, new ThreadFactory() {
 			private final AtomicInteger threadNumber = new AtomicInteger(1);
 			@Override
@@ -83,7 +73,23 @@ public class TimerManager implements TimerManagerMBean {
         
         
 	public void stop() {
-		ses.shutdown();
+            if (ses == null && ses.isShutdown() && ses.isTerminated()) {
+                    ScheduledThreadPoolExecutor stpe = new ScheduledThreadPoolExecutor(10, new ThreadFactory() {
+			private final AtomicInteger threadNumber = new AtomicInteger(1);
+			@Override
+			public Thread newThread(Runnable r) {
+				Thread t = new Thread(r);
+				t.setName("Timermanager-Worker-" + threadNumber.getAndIncrement());
+				return t;
+			}
+                    });
+                    stpe.setMaximumPoolSize(10);
+                    stpe.setContinueExistingPeriodicTasksAfterShutdownPolicy(true);
+                    ses = stpe;
+                }
+            else {
+                ses.shutdown();
+            }
 	}
 	
 	public ScheduledFuture<?> register(Runnable r, long repeatTime, long delay) {
