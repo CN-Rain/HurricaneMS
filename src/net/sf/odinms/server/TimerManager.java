@@ -83,7 +83,7 @@ public class TimerManager implements TimerManagerMBean {
 	}
         
         public void reconnectExecutor() {
-            if (ses == null && ses.isShutdown() && ses.isTerminated()) {
+            if (ses != null ||  (ses.isShutdown() && ses.isTerminated())) {
                 ScheduledThreadPoolExecutor stpe = new ScheduledThreadPoolExecutor(10, new ThreadFactory() {
 			private final AtomicInteger threadNumber = new AtomicInteger(1);
 			@Override
