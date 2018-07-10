@@ -189,7 +189,7 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 						dropRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.drop"));
 						bossdropRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.bossdrop"));
 						petExpRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.petExp"));
-                        mountExpRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.mountExp"));
+                                                mountExpRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.mountExp"));
 						serverMessage = props.getProperty("net.sf.odinms.world.serverMessage");
 						dropUndroppables = Boolean.parseBoolean(props.getProperty("net.sf.odinms.world.alldrop", "false"));
 						moreThanOne = Boolean.parseBoolean(props.getProperty("net.sf.odinms.world.morethanone", "false"));
@@ -330,7 +330,8 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 		// Item.loadInitialDataFromDB();
 		final TimerManager tMan = TimerManager.getInstance();
 		tMan.start();
-		tMan.register(AutobanManager.getInstance(), 60000);
+                // Not sure why the AutobanManager is there, just commented it out in case it has to do something with the channel disconnection. #ToBeTested
+		//tMan.register(AutobanManager.getInstance(), 60000);
 
 		try {
 			MapleServerHandler serverHandler = new MapleServerHandler(PacketProcessor.getProcessor(PacketProcessor.Mode.CHANNELSERVER), channel);

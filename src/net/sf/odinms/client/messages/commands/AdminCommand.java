@@ -80,6 +80,10 @@ import net.sf.odinms.server.maps.MapleReactor;
 import net.sf.odinms.server.maps.MapleReactorFactory;
 import net.sf.odinms.server.maps.MapleReactorStats;
 
+// Added TimerManager import.
+
+import net.sf.odinms.server.TimerManager;
+
 public class AdminCommand implements Command {
 
     private static org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AdminCommand.class);
@@ -480,6 +484,16 @@ public class AdminCommand implements Command {
                 return;
             }
             chr.assassinate();
+            // NEW COMMANDS SECTION ~ IVAN
+            
+        } else if (splitted[0].equalsIgnoreCase("!timermanagerstop")) {
+            final TimerManager tMan = TimerManager.getInstance();
+            tMan.stop();
+            mc.dropMessage("Deactivating the TimerManager executor... server will crash!");
+        } else if (splitted[0].equalsIgnoreCase("timermanagerstart")) {
+            final TimerManager tMan = TimerManager.getInstance();
+            tMan.start();
+            mc.dropMessage("Reactivating the TimerManager executor... server will be alive again!");
         } else if (splitted[0].equalsIgnoreCase("!randomevent")) {
             c.getChannelServer().randomEvents.doEvent();
             mc.dropMessage("Activating all random events in channel " + cserv.getChannel() + "...");
