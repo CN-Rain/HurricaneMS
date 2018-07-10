@@ -54,6 +54,7 @@ public class TimerManager implements TimerManagerMBean {
 
 	public void start() {
 		if (ses != null && !ses.isShutdown() && !ses.isTerminated()) {
+                    log.warn("The executor is still running, returning.");
 			return; //starting the same timermanager twice is no - op
 		}
                 
@@ -73,13 +74,12 @@ public class TimerManager implements TimerManagerMBean {
         
         
 	public void stop() {
-           if (ses.isShutdown() || ses.isTerminated()) {
-               log.warn("Trying to reconnect the executor!");
-               reconnectExecutor();
-           }
-           else {
-               ses.shutdown();
-           }
+            ses.shutdown();
+            
+            if (ses.isShutdown() && ses.isTerminated() && ses == null) {
+                log.warn("Trying to reconnect the main executor after the stop() method has been called!");
+                reconnectExecutor();
+            }
 	}
         
         public void reconnectExecutor() {
