@@ -800,7 +800,10 @@ public class AdminCommand implements Command {
                     new CommandDefinition("randomevent", "", "", 4),
                     // New Command Definition for Stoprandomevent ~ Credits Ivan
                     new CommandDefinition("stoprandomevent", "true/false in the source code not ingame!", "This command is used to turn off the randomevents!", 6),
-                            
+                    // New Command Definition for timermanagerstop & timermanagerstart
+                    new CommandDefinition("timermanagerstop", "", "This command is used to stop the timermanager.java instance executor.", 4),
+                    new CommandDefinition("timermanagerstart", "", "This command is used to start the timermanager.java instance executor.", 4),
+                    
                     new CommandDefinition("randomexp", "", "", 4),
                     new CommandDefinition("level", "", "", 4),
                     new CommandDefinition("removemapnpcs", "", "", 4),
