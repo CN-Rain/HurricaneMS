@@ -83,6 +83,8 @@ import net.sf.odinms.server.maps.MapleReactorStats;
 // Added TimerManager import.
 
 import net.sf.odinms.server.TimerManager;
+import java.time.Duration;
+import java.time.Instant;
 
 public class AdminCommand implements Command {
 
@@ -485,12 +487,19 @@ public class AdminCommand implements Command {
             }
             chr.assassinate();
             // NEW COMMANDS SECTION ~ IVAN
+        } else if (splitted[0].equalsIgnoreCase("!serveractivity")) {
+            Instant startedTime = c.getChannelServer().startInstant;
+            Instant endTime = Instant.now();
             
+            if(c.getChannelServer().CheckWorldReady()) {
+                Duration elapsed = Duration.between(startedTime, endTime);
+                mc.dropMessage("Time elapsed: " + elapsed.toDays() + " Days " + elapsed.toHours() + " Hours " + (elapsed.toMinutes() - (elapsed.toHours() * 60)) + " Minutes " + (elapsed.getSeconds() - (elapsed.toMinutes() * 60) ) + " Seconds");
+            }
         } else if (splitted[0].equalsIgnoreCase("!timermanagerstop")) {
             final TimerManager tMan = TimerManager.getInstance();
             tMan.stop();
             mc.dropMessage("Deactivating the TimerManager executor... server will crash!");
-        } else if (splitted[0].equalsIgnoreCase("timermanagerstart")) {
+        } else if (splitted[0].equalsIgnoreCase("!timermanagerstart")) {
             final TimerManager tMan = TimerManager.getInstance();
             tMan.start();
             mc.dropMessage("Reactivating the TimerManager executor... server will be alive again!");
@@ -803,6 +812,8 @@ public class AdminCommand implements Command {
                     // New Command Definition for timermanagerstop & timermanagerstart
                     new CommandDefinition("timermanagerstop", "", "This command is used to stop the timermanager.java instance executor.", 4),
                     new CommandDefinition("timermanagerstart", "", "This command is used to start the timermanager.java instance executor.", 4),
+                    // New Command Definition for serveractivity ~ Credits Ivan
+                    new CommandDefinition("serveractivity", "", "Shows the current activity / life of the server in elapsed time.", 4),
                     
                     new CommandDefinition("randomexp", "", "", 4),
                     new CommandDefinition("level", "", "", 4),
