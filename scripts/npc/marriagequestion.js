@@ -6,8 +6,8 @@ var status = 0;
 var otherChar;
 var Char;
 
-importPackage(net.sf.odinms.client);
-importPackage(net.sf.odinms.server);
+importPackage(Packages.net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.server);
  
 function start(character3) {
 	status = -1;

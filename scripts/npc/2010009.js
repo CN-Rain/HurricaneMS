@@ -1,6 +1,6 @@
 /* 2010009 */
 
-importPackage(net.sf.odinms.net.world.guild);
+importPackage(Packages.net.sf.odinms.net.world.guild);
 
 var status;
 var choice;

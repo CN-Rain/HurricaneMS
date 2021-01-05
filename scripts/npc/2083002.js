@@ -5,7 +5,7 @@
 var status = 0;
 var PQItems = Array(4001087, 4001088, 4001089, 4001090, 4001091, 4001092, 4001093);
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 function start() {
 	status = -1;

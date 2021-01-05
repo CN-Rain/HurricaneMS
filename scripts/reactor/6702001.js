@@ -3,7 +3,7 @@
  *@author Jvlaple
  */
 
-importPackage(java.lang);
+importPackage(Packages.java.lang);
 
 function act() {
 	var eim = rm.getPlayer().getEventInstance();

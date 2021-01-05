@@ -19,7 +19,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-importPackage(net.sf.odinms.server.maps);
+importPackage(Packages.net.sf.odinms.server.maps);
 
 /*
 Stage 2: Exit Door - Guild Quest

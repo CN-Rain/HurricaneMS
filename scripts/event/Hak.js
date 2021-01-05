@@ -34,7 +34,7 @@
 ---------------------------------------------------------------------------------------------------
 **/
 
-importPackage(net.sf.odinms.tools);
+importPackage(Packages.net.sf.odinms.tools);
 
 var returnTo = new Array(200000141,250000100);
 var rideTo = new Array(250000100,200000141);

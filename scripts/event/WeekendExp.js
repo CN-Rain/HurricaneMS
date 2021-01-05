@@ -1,5 +1,5 @@
-importPackage(net.sf.odinms.client);
-importPackage(net.sf.odinms.channel);
+importPackage(Packages.net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.channel);
 
 var year;
 var month;

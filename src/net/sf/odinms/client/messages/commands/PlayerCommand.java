@@ -360,7 +360,7 @@ public class PlayerCommand implements Command {
                 mc.dropMessage("Done, please wait for a reply.");
             }
         } else if (splitted[0].equalsIgnoreCase("@help") || splitted[0].equalsIgnoreCase("!help")) {
-            mc.dropMessage("==MapleSyrup Commands==");
+            mc.dropMessage("==ImperialMaple Commands==");
             for (CommandDefinition cd : getDefinition()) {
                 if (!cd.getCommand().equalsIgnoreCase("help")) {
                     mc.dropMessage("@" + cd.getCommand() + " - " + cd.getHelp());
@@ -414,22 +414,22 @@ public class PlayerCommand implements Command {
     @Override
     public CommandDefinition[] getDefinition() {
         return new CommandDefinition[]{
-			new CommandDefinition("storage", "", "Opens storage from anywhere", 0),
+			new CommandDefinition("storage", "", "Opens storage from anywhere", 2),
 			new CommandDefinition("str", "", "Add your stats very fast", 0),
 			new CommandDefinition("int", "", "Add your stats very fast", 0),
 			new CommandDefinition("dex", "", "Add your stats very fast", 0),
 			new CommandDefinition("luk", "", "Add your stats very fast", 0),
 			new CommandDefinition("online", "", "Check who is online", 0),
-			new CommandDefinition("clearinv", "", "clear your slots", 0),
-			new CommandDefinition("switch", "", "Switches characters without relogging.", 0),
-			new CommandDefinition("dropall", "", "Drops all items in your inventory.", 0),
+			new CommandDefinition("clearinv", "", "clear your slots", 2),
+			new CommandDefinition("switch", "", "Switches characters without relogging.", 2),
+			new CommandDefinition("dropall", "", "Drops all items in your inventory.", 2),
 			new CommandDefinition("gm", "", "Sends all online GameMasters a message.", 0),
 			new CommandDefinition("help", "", "Shows help.", 0),
                         new CommandDefinition("partyfix", "", "Fixes the party so you can create a Party.", 0),
 			new CommandDefinition("battleshiphp", "", "Shows your battleship HP.", 0),
 			new CommandDefinition("rates", "", "Shows the current rates.", 0),
-			new CommandDefinition("donator", "", "Opens the donator shop.", 0),
-			new CommandDefinition("freemarket", "", "Warps you to free market.", 0),
+                      //new CommandDefinition("donator", "", "Opens the donator shop.", 0),
+                      //new CommandDefinition("freemarket", "", "Warps you to free market.", 0),
 			new CommandDefinition("bosshp", "", "Shows all bosses HP.", 0),
 			new CommandDefinition("foj", "", "Opens the FOJ (Field of judgement) NPC.", 0),
 		};

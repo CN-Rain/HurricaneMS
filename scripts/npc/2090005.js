@@ -30,7 +30,7 @@
 ---------------------------------------------------------------------------------------------------
 **/
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 var menu = new Array("Mu Lung","Orbis","Herb Town","Mu Lung");
 var cost = new Array(6000,6000,1500,1500);
 var hak;

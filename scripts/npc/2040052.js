@@ -29,7 +29,7 @@
 ---------------------------------------------------------------------------------------------------
 **/
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 var status = 0;
 var questid = new Array(3615,3616,3617,3618,3630,3633,3639);
 var questitem = new Array(4031235,4031236,4031237,4031238,4031270,4031280,4031298);

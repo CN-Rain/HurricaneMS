@@ -2,7 +2,7 @@
  *@author Jvlaple
  *party3_r4pt
  */
-importPackage(java.lang);
+importPackage(Packages.java.lang);
 
 function enter(pi) {
 	var tehwat = Math.random() * 3;

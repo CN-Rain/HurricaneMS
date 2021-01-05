@@ -27,7 +27,7 @@
  * Guild Quest - end of boss
  */
 
-importPackage(java.lang);
+importPackage(Packages.java.lang);
 
 function start() {
         var eim = cm.getPlayer().getEventInstance();

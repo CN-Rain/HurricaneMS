@@ -33,7 +33,7 @@
 ---------------------------------------------------------------------------------------------------
 **/
 
-importPackage(net.sf.odinms.tools);
+importPackage(Packages.net.sf.odinms.tools);
 
 //Time Setting is in millisecond
 var closeTime = 240000; //The time to close the gate

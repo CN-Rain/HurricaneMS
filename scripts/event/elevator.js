@@ -32,7 +32,7 @@
 ---------------------------------------------------------------------------------------------------
 **/
 
-importPackage(net.sf.odinms.scripting.reactor);
+importPackage(Packages.net.sf.odinms.scripting.reactor);
 var elevator_s;
 var elevator_m;
 var returnMap;

@@ -3,7 +3,7 @@
 	Map(s): 		Victoria Road : Nautilus Harbor (120000000)
 	Description: 		Nautilus Harbor Taxi
 */
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var status = 0;
 var maps = Array(104000000, 102000000, 100000000, 103000000, 101000000);

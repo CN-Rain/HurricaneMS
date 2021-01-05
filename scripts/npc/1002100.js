@@ -3,7 +3,7 @@
 	Map(s): 		Victoria Road : Lith Harbor (104000000)
 	Description: 		Sells potions/food if completed all her quests
 */
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var status = 0;
 var amount = -1;

@@ -26,7 +26,7 @@
 	Custom Quest 100006, 100008, 100100, 100101
 */
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var status = 0;
 var job;

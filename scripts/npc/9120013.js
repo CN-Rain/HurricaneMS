@@ -26,7 +26,7 @@
 	Quiz for quest 8012 (Sakura, the Kitty, and the Orange Marble)
 */
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var status;
 var questions;

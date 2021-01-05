@@ -409,7 +409,7 @@ public class GMCommand implements Command {
         } else if (splitted[0].equalsIgnoreCase("!fh")) {
 			mc.dropMessage("" + c.getPlayer().getMap().getFootholds().findBelow(c.getPlayer().getPosition()).getId());
 		} else if (splitted[0].equalsIgnoreCase("!commands")) {
-			mc.dropMessage("==MapleSyrup Commands");
+			mc.dropMessage("==ImperialMaple Commands");
 		int page = CommandProcessor.getOptionalIntArg(splitted, 1, 1);
 		CommandProcessor.getInstance().dropHelp(c.getPlayer(), mc, page);
 		}

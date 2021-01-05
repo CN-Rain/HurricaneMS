@@ -18,8 +18,8 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-importPackage(java.lang);
-importPackage(net.sf.odinms.server);
+importPackage(Packages.java.lang);
+importPackage(Packages.net.sf.odinms.server);
 /* 
 	Adobis
 */

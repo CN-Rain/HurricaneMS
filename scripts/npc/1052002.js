@@ -35,7 +35,7 @@
 	* UPDATE `shops` SET `npcid`='9030000' WHERE (`shopid`='0')
 */
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var status = 0;
 var selectedType = -1;

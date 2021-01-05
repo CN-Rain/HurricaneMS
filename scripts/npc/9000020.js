@@ -3,7 +3,7 @@
 	Map(s): 		Victoria Road : Henesys (100000000), Victoria Road : Ellinia (101000000), Victoria Road : Perion (102000000), Victoria Road : Kerning City (103000000), Victoria Road : Lith Harbor (104000000), Orbis : Orbis (200000000), Ludibrium : Ludibrium (220000000), Leafre : Leafre (240000000), Zipangu : Mushroom Shrine (800000000)
 	Description: 		World Tour Guide - Takes you to Mushroom Shrine and back
 */
-importPackage(net.sf.odinms.server.maps);
+importPackage(Packages.net.sf.odinms.server.maps);
 
 var status = 0;
 var cost;

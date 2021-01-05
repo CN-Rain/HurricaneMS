@@ -28,10 +28,10 @@
  */
 
 
-importPackage(net.sf.odinms.world);
-importPackage(net.sf.odinms.client);
-importPackage(net.sf.odinms.server.maps);
-importPackage(java.lang);
+importPackage(Packages.net.sf.odinms.world);
+importPackage(Packages.net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.server.maps);
+importPackage(Packages.java.lang);
 
 var exitMap;
 var instanceId;

@@ -26,7 +26,7 @@
 	Custom Quest 100000, 100002
 */
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var status = 0;
 var job;

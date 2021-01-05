@@ -3,7 +3,7 @@
 	Map(s): 		Victoria Road : Lith Harbour (104000000)
 	Description: 		Explains Victoria Island Towns and can take you to them
 */
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var status = 0;
 var maps = Array(102000000, 101000000, 100000000, 103000000, 120000000);

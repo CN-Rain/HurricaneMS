@@ -3,7 +3,7 @@
 	Map(s): 		Victoria Road : Lith Harbor (104000000)
 	Description: 		Florina Beach Tour Guide
 */
-importPackage(net.sf.odinms.server.maps);
+importPackage(Packages.net.sf.odinms.server.maps);
 
 var status = 0;
 

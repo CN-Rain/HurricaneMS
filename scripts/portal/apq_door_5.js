@@ -19,9 +19,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-importPackage(net.sf.odinms.server.maps);
-importPackage(net.sf.odinms.net.channel);
-importPackage(net.sf.odinms.tools);
+importPackage(Packages.net.sf.odinms.server.maps);
+importPackage(Packages.net.sf.odinms.net.channel);
+importPackage(Packages.net.sf.odinms.tools);
 
 /*
 Amoria: 2nd stage to 3rd stage portal

@@ -30,7 +30,7 @@
 	1.0 - First Version by Information
 ---------------------------------------------------------------------------------------------------
 **/
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var mapid = new Array(200000110,200000120,200000130,200000140,200000150);
 var platform = new Array("Ellinia","Ludibrium","Leafre","Mu Lung","Ariant");

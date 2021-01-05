@@ -3,9 +3,9 @@
 **hontale_c.js
 @author Jvlaple
 */
-importPackage(net.sf.odinms.server.maps);
-importPackage(net.sf.odinms.net.channel);
-importPackage(net.sf.odinms.tools);
+importPackage(Packages.net.sf.odinms.server.maps);
+importPackage(Packages.net.sf.odinms.net.channel);
+importPackage(Packages.net.sf.odinms.tools);
 
 function enter(pi) {
 

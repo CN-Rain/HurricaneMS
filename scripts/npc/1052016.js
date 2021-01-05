@@ -3,7 +3,7 @@
 	Map(s): 		Victoria Road : Kerning City (103000000)
 	Description: 		Kerning City Cab
 */
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var status = 0;
 var maps = Array(104000000, 102000000, 101000000, 100000000, 120000000);

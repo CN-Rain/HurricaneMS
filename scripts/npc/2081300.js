@@ -24,7 +24,7 @@
 	Somewhere in Leafre (hell if I know the mapID)
 */
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var status = 0;
 var job;

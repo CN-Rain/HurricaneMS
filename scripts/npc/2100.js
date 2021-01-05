@@ -3,8 +3,8 @@
 	Map(s): 		Maple Road : Entrance - Mushroom Town Training Camp (0), Maple Road: Upper level of the Training Camp (1), Maple Road : Entrance - Mushroom Town Training Camp (3)
 	Description: 		First NPC
 */
-importPackage(net.sf.odinms.client);
-importPackage(net.sf.odinms.server);
+importPackage(Packages.net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.server);
 
 var status = 0;
 var yes = 0;

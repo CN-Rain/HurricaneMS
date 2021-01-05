@@ -31,7 +31,7 @@
 ---------------------------------------------------------------------------------------------------
 **/
 
-importPackage(net.sf.odinms.server.maps);
+importPackage(Packages.net.sf.odinms.server.maps);
 
 function enter(pi) {
 	if (pi.haveItem(4031346)) {

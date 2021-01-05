@@ -27,12 +27,12 @@
  * Orbis Party Quest
  */
 
-importPackage(java.lang);
-importPackage(net.sf.odinms.world);
-importPackage(net.sf.odinms.client);
-importPackage(net.sf.odinms.server.maps);
-importPackage(net.sf.odinms.server.life);
-importPackage(net.sf.odinms.scripting.npc);
+importPackage(Packages.java.lang);
+importPackage(Packages.net.sf.odinms.world);
+importPackage(Packages.net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.server.maps);
+importPackage(Packages.net.sf.odinms.server.life);
+importPackage(Packages.net.sf.odinms.scripting.npc);
 
 var exitMap;
 var instanceId;

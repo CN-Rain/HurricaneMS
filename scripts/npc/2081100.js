@@ -24,7 +24,7 @@
 	Somewhere in Leafre (240010601)
 */
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var status = 0;
 var job;

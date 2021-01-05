@@ -23,9 +23,9 @@
  *Pirate PQ
  *@author Jvlaple
  */
-importPackage(net.sf.odinms.tools);
-importPackage(net.sf.odinms.server.life);
-importPackage(java.awt);
+importPackage(Packages.net.sf.odinms.tools);
+importPackage(Packages.net.sf.odinms.server.life);
+importPackage(Packages.java.awt);
 
 var status;
 var curMap;

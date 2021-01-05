@@ -19,8 +19,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-importPackage(net.sf.odinms.client);
-importPackage(net.sf.odinms.server.life);
+importPackage(Packages.net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.server.life);
 
 function init() {
 }

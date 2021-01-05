@@ -27,7 +27,7 @@
 	* Shoes - All classes, 25 (20 for magicians)-60
 */
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var status = 0;
 var selectedType = -1;

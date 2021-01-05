@@ -2,7 +2,7 @@
  *2022004.js - Tylus after the PQ
  *@author Jvlaple
  */
-importPackage(net.sf.odinms.client); 
+importPackage(Packages.net.sf.odinms.client); 
  
 function start() {
 	status = -1;

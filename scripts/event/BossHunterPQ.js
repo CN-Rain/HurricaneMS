@@ -26,12 +26,12 @@
  * 
  * Boss Hunter Party Quest
  */
-importPackage(java.lang);
+importPackage(Packages.java.lang);
 
-importPackage(net.sf.odinms.world);
-importPackage(net.sf.odinms.client);
-importPackage(net.sf.odinms.server.maps);
-importPackage(net.sf.odinms.server.life);
+importPackage(Packages.net.sf.odinms.world);
+importPackage(Packages.net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.server.maps);
+importPackage(Packages.net.sf.odinms.server.life);
 
 var exitMap;
 var instanceId;

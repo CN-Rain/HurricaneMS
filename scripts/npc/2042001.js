@@ -1,7 +1,7 @@
 /*
   [Monster Carnival PQ] [By Haiku01]
 */
-importPackage(net.sf.odinms.server.maps);
+importPackage(Packages.net.sf.odinms.server.maps);
 
 var status = 0;
 var rnk = 0;

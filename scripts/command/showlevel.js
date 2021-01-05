@@ -19,11 +19,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-importPackage(net.sf.odinms.client);
-importPackage(net.sf.odinms.client.messages);
-importPackage(net.sf.odinms.net.channel);
-importPackage(net.sf.odinms.server);
-importPackage(net.sf.odinms.tools);
+importPackage(Packages.net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client.messages);
+importPackage(Packages.net.sf.odinms.net.channel);
+importPackage(Packages.net.sf.odinms.server);
+importPackage(Packages.net.sf.odinms.tools);
 
 function getDefinition () {
 	var ret = java.lang.reflect.Array.newInstance(CommandDefinition, 1);

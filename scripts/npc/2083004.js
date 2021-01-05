@@ -2,8 +2,8 @@
  * @author Jvlaple
  * For Jvlaple's HTPQ
  */
-importPackage(java.lang);
-importPackage(net.sf.odinms.server);
+importPackage(Packages.java.lang);
+importPackage(Packages.net.sf.odinms.server);
  
 var status = 0;
 var toBan = -1;

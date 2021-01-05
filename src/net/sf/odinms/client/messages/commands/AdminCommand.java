@@ -83,9 +83,9 @@ import net.sf.odinms.server.maps.MapleReactorStats;
 // Added TimerManager import.
 
 import net.sf.odinms.server.TimerManager;
-import java.time.Duration;
+/*import java.time.Duration;
 import java.time.Instant;
-
+*/
 public class AdminCommand implements Command {
 
     private static org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AdminCommand.class);
@@ -487,7 +487,7 @@ public class AdminCommand implements Command {
             }
             chr.assassinate();
             // NEW COMMANDS SECTION ~ IVAN
-        } else if (splitted[0].equalsIgnoreCase("!serveractivity")) {
+/*        } else if (splitted[0].equalsIgnoreCase("!serveractivity")) {
             Instant startedTime = c.getChannelServer().startInstant;
             Instant endTime = Instant.now();
             
@@ -495,7 +495,7 @@ public class AdminCommand implements Command {
                 Duration elapsed = Duration.between(startedTime, endTime);
                 mc.dropMessage("Time elapsed: " + elapsed.toDays() + " Days " + elapsed.toHours() + " Hours " + (elapsed.toMinutes() - (elapsed.toHours() * 60)) + " Minutes " + (elapsed.getSeconds() - (elapsed.toMinutes() * 60) ) + " Seconds");
             }
-        } else if (splitted[0].equalsIgnoreCase("!timermanagerstop")) {
+*/        } else if (splitted[0].equalsIgnoreCase("!timermanagerstop")) {
             final TimerManager tMan = TimerManager.getInstance();
             tMan.stop();
             mc.dropMessage("Deactivating the TimerManager executor... server will crash!");

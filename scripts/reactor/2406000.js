@@ -2,7 +2,7 @@
  *2406000.js = Nine Spirit Egg
  *@author Jvlaple
  */
-importPackage(net.sf.odinms.client); 
+importPackage(Packages.net.sf.odinms.client); 
  
 function act() {
 	if (rm.getQuestStatus(3706) == MapleQuestStatus.Status.STARTED) {

@@ -27,7 +27,7 @@
 	* Dark Crystal - Half Price compared to Vogen, but must complete quest 
 */
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 var status = 0;
 var selectedItem = -1;

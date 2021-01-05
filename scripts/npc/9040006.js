@@ -26,7 +26,7 @@
  * Guild Quest Stage 3
  */
 
-importPackage(net.sf.odinms.server.maps);
+importPackage(Packages.net.sf.odinms.server.maps);
 
 function start() {
         //everything can be done in one status, so let's do it here.

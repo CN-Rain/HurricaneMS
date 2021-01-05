@@ -27,7 +27,7 @@
 var status = 0;
 var copns;
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 function start() {
 	status = -1;

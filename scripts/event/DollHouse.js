@@ -24,8 +24,8 @@
 	Hak, travel between Orbis, Mu Lung and Herb Town
 **/
 
-importPackage(net.sf.odinms.world);
-importPackage(net.sf.odinms.tools);
+importPackage(Packages.net.sf.odinms.world);
+importPackage(Packages.net.sf.odinms.tools);
 
 var returnMap;
 var map;

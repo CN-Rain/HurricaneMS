@@ -24,10 +24,10 @@
  *@author Jvlaple :)
  */
  
-importPackage(net.sf.odinms.tools);
-importPackage(net.sf.odinms.client);
-importPackage(net.sf.odinms.server.maps);
-importPackage(java.lang);
+importPackage(Packages.net.sf.odinms.tools);
+importPackage(Packages.net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.server.maps);
+importPackage(Packages.java.lang);
 
 var curStage;
 

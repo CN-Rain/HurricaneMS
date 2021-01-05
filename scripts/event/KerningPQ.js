@@ -37,7 +37,7 @@ INSERT monsterdrops (monsterid,itemid,chance) VALUES (9300002,4001008,1);
 INSERT monsterdrops (monsterid,itemid,chance) VALUES (9300003,4001008,1);
 */
 
-importPackage(net.sf.odinms.world);
+importPackage(Packages.net.sf.odinms.world);
 
 var exitMap;
 var instanceId;

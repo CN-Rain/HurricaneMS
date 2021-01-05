@@ -1,7 +1,7 @@
 var status = 0;
 var mval;
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.net.sf.odinms.client);
 
 function start() {
 	mval = cm.getMorphValue();
