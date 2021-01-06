@@ -110,6 +110,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements In
     private int jobRankMove;
     private String name;
     private int level;
+    private int rebirths;
     private int str,  dex,  luk,  int_;
     private AtomicInteger exp = new AtomicInteger();
     private int hp,  maxhp;
@@ -386,7 +387,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements In
         ret.married = rs.getInt("married");
         ret.partnerid = rs.getInt("partnerid");
         ret.marriageQuestLevel = rs.getInt("marriagequest");
-
+        ret.rebirths = rs.getInt("rebirths");
         //mount
         int mountexp = rs.getInt("mountexp");
         int mountlevel = rs.getInt("mountlevel");
@@ -660,6 +661,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements In
         ret.job = MapleJob.BEGINNER;
         ret.meso.set(0);
         ret.level = 1;
+        ret.rebirths = 0;
         ret.accountid = client.getAccID();
         ret.buddylist = new BuddyList(20);
         try {
@@ -734,7 +736,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements In
             // connections are thread local now, no need to synchronize anymore =)
             con.setAutoCommit(false);
             PreparedStatement ps;
-            ps = con.prepareStatement("UPDATE characters SET level = ?, fame = ?, str = ?, dex = ?, luk = ?, `int` = ?, exp = ?, hp = ?, mp = ?, maxhp = ?, maxmp = ?, sp = ?, ap = ?, gm = ?, skincolor = ?, gender = ?, job = ?, hair = ?, face = ?, map = ?, meso = ?, hpApUsed = ?, mpApUsed = ?, spawnpoint = ?, party = ?, buddyCapacity = ?, messengerid = ?, messengerposition = ? WHERE id = ?");
+            ps = con.prepareStatement("UPDATE characters SET level = ?, fame = ?, str = ?, dex = ?, luk = ?, `int` = ?, exp = ?, hp = ?, mp = ?, maxhp = ?, maxmp = ?, sp = ?, ap = ?, gm = ?, skincolor = ?, gender = ?, job = ?, hair = ?, face = ?, map = ?, meso = ?, hpApUsed = ?, mpApUsed = ?, spawnpoint = ?, party = ?, buddyCapacity = ?, messengerid = ?, messengerposition = ?, rebirths = ? WHERE id = ?");
 
             ps.setInt(1, level);
             ps.setInt(2, fame);
@@ -790,8 +792,8 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements In
                 ps.setInt(27, 0);
                 ps.setInt(28, 4);
             }
-
-            ps.setInt(29, id);
+            ps.setInt(29, rebirths);
+            ps.setInt(30, id);
 
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -829,10 +831,10 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements In
             con.setAutoCommit(false);
             PreparedStatement ps;
             if (update) {
-                ps = con.prepareStatement("UPDATE characters " + "SET level = ?, fame = ?, str = ?, dex = ?, luk = ?, `int` = ?, " + "exp = ?, hp = ?, mp = ?, maxhp = ?, maxmp = ?, sp = ?, ap = ?, " + "gm = ?, skincolor = ?, gender = ?, job = ?, hair = ?, face = ?, map = ?, " + "meso = ?, hpApUsed = ?, mpApUsed = ?, spawnpoint = ?, party = ?, buddyCapacity = ?, messengerid = ?, messengerposition = ?, married = ?, partnerid = ?, cantalk = ?, zakumlvl = ?, marriagequest = ?, mountlevel = ?, mountexp = ?, mounttiredness = ?, alliancerank = ? WHERE id = ?");
+                ps = con.prepareStatement("UPDATE characters " + "SET level = ?, fame = ?, str = ?, dex = ?, luk = ?, `int` = ?, " + "exp = ?, hp = ?, mp = ?, maxhp = ?, maxmp = ?, sp = ?, ap = ?, " + "gm = ?, skincolor = ?, gender = ?, job = ?, hair = ?, face = ?, map = ?, " + "meso = ?, hpApUsed = ?, mpApUsed = ?, spawnpoint = ?, party = ?, buddyCapacity = ?, messengerid = ?, messengerposition = ?, married = ?, partnerid = ?, cantalk = ?, zakumlvl = ?, marriagequest = ?, mountlevel = ?, mountexp = ?, mounttiredness = ?, rebirths = ?, alliancerank = ? WHERE id = ?");
             } else {
                 //31 inserts
-                ps = con.prepareStatement("INSERT INTO characters (" + "level, fame, str, dex, luk, `int`, exp, hp, mp, " + "maxhp, maxmp, sp, ap, gm, skincolor, gender, job, hair, face, map, meso, hpApUsed, mpApUsed, spawnpoint, party, buddyCapacity, messengerid, messengerposition, married, partnerid, cantalk, zakumlvl, marriagequest,  mountlevel, mounttiredness, mountexp, alliancerank, accountid, name, world" + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                ps = con.prepareStatement("INSERT INTO characters (" + "level, fame, str, dex, luk, `int`, exp, hp, mp, " + "maxhp, maxmp, sp, ap, gm, skincolor, gender, job, hair, face, map, meso, hpApUsed, mpApUsed, spawnpoint, party, buddyCapacity, messengerid, messengerposition, rebirths, married, partnerid, cantalk, zakumlvl, marriagequest,  mountlevel, mounttiredness, mountexp, alliancerank, accountid, name, world" + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             }
             ps.setInt(1, level);
             ps.setInt(2, fame);
@@ -885,32 +887,31 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements In
                 ps.setInt(27, 0);
                 ps.setInt(28, 4);
             }
-
-            ps.setInt(29, married);
-            ps.setInt(30, partnerid);
-            ps.setInt(31, canTalk);
+            ps.setInt(29, rebirths);
+            ps.setInt(30, married);
+            ps.setInt(31, partnerid);
+            ps.setInt(32, canTalk);
             if (zakumLvl <= 2) //Don't let zakumLevel exceed three ;)
             {
-                ps.setInt(32, zakumLvl);
+                ps.setInt(33, zakumLvl);
             } else {
-                ps.setInt(32, 2);
+                ps.setInt(33, 2);
             }
-            ps.setInt(33, marriageQuestLevel);
+            ps.setInt(34, marriageQuestLevel);
 
             if (false) {
             } else {
-                ps.setInt(34, 1);
-                ps.setInt(35, 0);
+                ps.setInt(35, 1);
                 ps.setInt(36, 0);
+                ps.setInt(37, 0);
             }
-			ps.setInt(37, this.allianceRank);
+			ps.setInt(38, this.allianceRank);
             if (update) {
-                ps.setInt(38, id);
+                ps.setInt(39, id);
             } else {
-                ps.setInt(38, accountid);
-                ps.setString(39, name);
-                ps.setInt(40, world); // TODO store world somewhere ;)
-
+                ps.setInt(39, accountid);
+                ps.setString(40, name);
+                ps.setInt(41, world); // TODO store world somewhere ;)
             }
             int updateRows = ps.executeUpdate();
             if (!update) {
@@ -1608,6 +1609,14 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements In
     public int getLevel() {
         return level;
     }
+    
+    public int getRebirths() {
+        return rebirths;
+    }
+    
+    public void setRebirths(int rebirths) {
+        this.rebirths = rebirths;
+    }
 
     public int getRank() {
         return rank;
@@ -2015,7 +2024,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements In
         this.remainingAp += ap;
         updateSingleStat(MapleStat.AVAILABLEAP, this.remainingAp);
     }
-
+    
     public void changeSkillLevel(ISkill skill, int newLevel, int newMasterlevel) {
         skills.put(skill, new SkillEntry(newLevel, newMasterlevel));
         this.getClient().getSession().write(MaplePacketCreator.updateSkill(skill.getId(), newLevel, newMasterlevel));
@@ -2568,7 +2577,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements In
         int improvingMaxHPLevel = 0;
         ISkill improvingMaxMP = SkillFactory.getSkill(2000001);
         int improvingMaxMPLevel = getSkillLevel(improvingMaxMP);
-        remainingAp += 10;
+        remainingAp += 5;
         if (job == MapleJob.BEGINNER) {
             maxhp += rand(36, 48);
             maxmp += rand(30, 36);

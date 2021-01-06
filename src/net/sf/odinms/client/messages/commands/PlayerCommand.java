@@ -376,9 +376,39 @@ public class PlayerCommand implements Command {
                 mc.dropMessage("You are not on a battleship.");
             }
         } else if (splitted[0].equalsIgnoreCase("@rates") || splitted[0].equalsIgnoreCase("!rates")) {
+            if (c.getPlayer().getRebirths() == 0) {
             mc.dropMessage("EXP Rate: " + c.getChannelServer().getExpRate());
+            } else if (c.getPlayer().getRebirths() == 1) {
+            mc.dropMessage("EXP Rate: " + c.getChannelServer().getExpRate1());
+            } else if (c.getPlayer().getRebirths() == 2) {
+            mc.dropMessage("EXP Rate: " + c.getChannelServer().getExpRate2());
+            } else if (c.getPlayer().getRebirths() == 3) {
+            mc.dropMessage("EXP Rate: " + c.getChannelServer().getExpRate3());
+            } else if (c.getPlayer().getRebirths() == 4) {
+            mc.dropMessage("EXP Rate: " + c.getChannelServer().getExpRate4());
+            } else if (c.getPlayer().getRebirths() == 5) {
+            mc.dropMessage("EXP Rate: " + c.getChannelServer().getExpRate5());
+            }
             mc.dropMessage("Meso Rate: " + c.getChannelServer().getMesoRate());
             mc.dropMessage("Drop Rate: " + c.getChannelServer().getDropRate());
+        } else if (splitted[0].equalsIgnoreCase("@rebirth") || splitted[0].equalsIgnoreCase("!rebirth")) {
+            MapleCharacter player = c.getPlayer();
+            int negexp;
+            if (player.getLevel() > 199 && player.getRebirths() <= 4) {
+                player.setLevel(1);
+                player.setExp(0);
+                player.setRebirths(player.getRebirths() + 1);
+                negexp = player.getExp();
+                player.gainExp(-negexp, false, false);
+                player.updateSingleStat(MapleStat.EXP, player.getExp());
+            } else {
+                if (player.getLevel() < 200) {
+                    mc.dropMessage("You must be level 200.");
+                }
+                if (player.getRebirths() > 4) {
+                    mc.dropMessage("You already have max rebirths");
+                }
+                }
         } else if (splitted[0].equalsIgnoreCase("@donator") || splitted[0].equalsIgnoreCase("!donator")) {
             NPCScriptManager.getInstance().start(c, 9201001, "donatorshop", null);
             mc.dropMessage("Donator shop opened!");
@@ -428,6 +458,7 @@ public class PlayerCommand implements Command {
                         new CommandDefinition("partyfix", "", "Fixes the party so you can create a Party.", 0),
 			new CommandDefinition("battleshiphp", "", "Shows your battleship HP.", 0),
 			new CommandDefinition("rates", "", "Shows the current rates.", 0),
+                        new CommandDefinition("rebirth", "", "Rebirth your player back to level 1.(Same Class)", 0),
                       //new CommandDefinition("donator", "", "Opens the donator shop.", 0),
                       //new CommandDefinition("freemarket", "", "Warps you to free market.", 0),
 			new CommandDefinition("bosshp", "", "Shows all bosses HP.", 0),

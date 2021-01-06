@@ -188,10 +188,12 @@ public class PlayerLoggedinHandler extends AbstractMaplePacketHandler {
 		player.checkMessenger();
 
 		player.checkBerserk();
-		
+		if (player.getLevel() < 10 && player.getRebirths() == 0) {
+                    c.getSession().write(MaplePacketCreator.serverNotice(5, "You will gain 1x EXP until you reach level 10!"));
+                }
 		if (player.getLevel() <= 8) {
 			player.giveItemBuff(2022118);
-			c.getSession().write(MaplePacketCreator.serverNotice(5, "You have been buffed by the power of Syrup!"));
+			c.getSession().write(MaplePacketCreator.serverNotice(5, "You have been buffed by the power of ImperialMaple!"));
 			c.getSession().write(MaplePacketCreator.serverNotice(5, "Type @help to see all help available."));
 		}
 	}

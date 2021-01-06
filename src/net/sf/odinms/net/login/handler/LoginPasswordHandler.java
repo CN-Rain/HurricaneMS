@@ -47,10 +47,12 @@ public class LoginPasswordHandler implements MaplePacketHandler {
 		if (login.startsWith("_")) {
 			String loginFix = login.replaceFirst("_", "");
 			int ok = c.fix(loginFix, pwd);
-			if (ok != 0)
-				c.getSession().write(MaplePacketCreator.getLoginFailed(ok));
-			else
-				c.getSession().write(MaplePacketCreator.getLoginFailed(7));
+			if (ok != 0) {
+                        c.getSession().write(MaplePacketCreator.getLoginFailed(ok));
+                    }
+			else {
+                        c.getSession().write(MaplePacketCreator.getLoginFailed(7));
+                    }
 				//c.getSession().write(MaplePacketCreator.serverNotice(1, "Your account has been fixed!"));
 			return;
 		}

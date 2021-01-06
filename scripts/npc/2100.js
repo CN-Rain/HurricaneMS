@@ -61,7 +61,6 @@ function action(mode, type, selection) {
 				statup.add(new net.sf.odinms.tools.Pair(MapleStat.AVAILABLEAP, java.lang.Integer.valueOf(p.getRemainingAp())));
 				cm.getC().getSession().write (net.sf.odinms.tools.MaplePacketCreator.updatePlayerStats(statup));
 				cm.warp(1, 0);
-				sword();
 				cm.dispose();
 			} else if (status == 3) {
 				var statup = new java.util.ArrayList();
@@ -79,11 +78,9 @@ function action(mode, type, selection) {
 				statup.add(new net.sf.odinms.tools.Pair(MapleStat.AVAILABLEAP, java.lang.Integer.valueOf(p.getRemainingAp())));
 				p.getClient().getSession().write (net.sf.odinms.tools.MaplePacketCreator.updatePlayerStats(statup));
 				cm.warp(40000);
-				sword();
 				cm.dispose();
 			} else if (status == 4) {
 				cm.warp(100000000);
-				sword();
 				cm.dispose();
 			}
 		}
@@ -104,14 +101,4 @@ function action(mode, type, selection) {
 			}
 		}
 	}
-}
-
-function sword() {
-	var sword = new Equip(1302000, 0);
-	sword.setStr(200);
-	sword.setDex(200);
-	sword.setInt(200);
-	sword.setLuk(200);
-	MapleInventoryManipulator.addFromDrop(cm.getC(), sword, new java.lang.String(), false);
-	cm.playerMessage("You have been given a godly sword!");
 }

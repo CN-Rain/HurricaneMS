@@ -558,10 +558,10 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 
 	public MapleCharacter killBy(MapleCharacter killer) {
 		// broadcastMessage(null, MaplePacketCreator.getPreKillthis(this.getObjectId()));
-
+                if (killer.getRebirths() == 0 && killer.getLevel() < 10) {
 		// update exp
-		long totalBaseExpL = this.getExp() * ChannelServer.getInstance(killer.getClient().getChannel()).getExpRate() * killer.getClient().getPlayer().hasEXPCard();
-		int totalBaseExp = (int) (Math.min(Integer.MAX_VALUE, totalBaseExpL));
+		long totalBaseExpL = this.getExp() * (1) * killer.getClient().getPlayer().hasEXPCard();
+                int totalBaseExp = (int) (Math.min(Integer.MAX_VALUE, totalBaseExpL));
 		AttackerEntry highest = null;
 		int highdamage = 0;
 		for (AttackerEntry attackEntry : attackers) {
@@ -613,7 +613,339 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 		MapleCharacter ret = highestDamageChar;
 		highestDamageChar = null; // may not keep hard references to chars outside of PlayerStorage or MapleMap
 		return ret;
-	}
+	} else if (killer.getRebirths() == 0 && killer.getLevel() >= 10) {
+    // update exp
+		long totalBaseExpL = this.getExp() * ChannelServer.getInstance(killer.getClient().getChannel()).getExpRate() * killer.getClient().getPlayer().hasEXPCard();
+                int totalBaseExp = (int) (Math.min(Integer.MAX_VALUE, totalBaseExpL));
+		AttackerEntry highest = null;
+		int highdamage = 0;
+		for (AttackerEntry attackEntry : attackers) {
+			if (attackEntry.getDamage() > highdamage) {
+				highest = attackEntry;
+				highdamage = attackEntry.getDamage();
+			}
+		}
+
+		for (AttackerEntry attackEntry : attackers) {
+			int baseExp = (int) Math.ceil(totalBaseExp * ((double) attackEntry.getDamage() / getMaxHp()));
+			attackEntry.killedMob(killer.getMap(), baseExp, attackEntry == highest);
+		}
+		if (this.getController() != null) { // this can/should only happen when a hidden gm attacks the monster
+			getController().getClient().getSession().write(
+				MaplePacketCreator.stopControllingMonster(this.getObjectId()));
+			getController().stopControllingMonster(this);
+		}
+		
+		// maybe this isn't the best place to do it, fixme then
+		final List<Integer> toSpawn = this.getRevives();
+
+		if (toSpawn != null) {
+			final MapleMap reviveMap = killer.getMap();
+			
+			TimerManager.getInstance().schedule(new Runnable() {
+				public void run() {
+					for(Integer mid : toSpawn) {
+						MapleMonster mob = MapleLifeFactory.getMonster(mid);
+						if (eventInstance != null) {
+							eventInstance.registerMonster(mob);
+						}
+						mob.setPosition(getPosition());
+						if (dropsDisabled()) {
+							mob.disableDrops();
+						}
+						reviveMap.spawnRevives(mob);
+					}
+				}
+			//}, this.getAnimationTime("die1") - MapleMonsterInformationProvider.APPROX_FADE_DELAY);
+			}, this.getAnimationTime("die1"));
+		}
+		if (eventInstance != null) {
+			eventInstance.unregisterMonster(this);
+		}
+		for (MonsterListener listener : listeners.toArray(new MonsterListener[listeners.size()])) {
+			listener.monsterKilled(this, highestDamageChar);
+		}
+		MapleCharacter ret = highestDamageChar;
+		highestDamageChar = null; // may not keep hard references to chars outside of PlayerStorage or MapleMap
+		return ret;
+                } else if (killer.getRebirths() == 1) {
+    // update exp
+		long totalBaseExpL = this.getExp() * ChannelServer.getInstance(killer.getClient().getChannel()).getExpRate1() * killer.getClient().getPlayer().hasEXPCard();
+                int totalBaseExp = (int) (Math.min(Integer.MAX_VALUE, totalBaseExpL));
+		AttackerEntry highest = null;
+		int highdamage = 0;
+		for (AttackerEntry attackEntry : attackers) {
+			if (attackEntry.getDamage() > highdamage) {
+				highest = attackEntry;
+				highdamage = attackEntry.getDamage();
+			}
+		}
+
+		for (AttackerEntry attackEntry : attackers) {
+			int baseExp = (int) Math.ceil(totalBaseExp * ((double) attackEntry.getDamage() / getMaxHp()));
+			attackEntry.killedMob(killer.getMap(), baseExp, attackEntry == highest);
+		}
+		if (this.getController() != null) { // this can/should only happen when a hidden gm attacks the monster
+			getController().getClient().getSession().write(
+				MaplePacketCreator.stopControllingMonster(this.getObjectId()));
+			getController().stopControllingMonster(this);
+		}
+		
+		// maybe this isn't the best place to do it, fixme then
+		final List<Integer> toSpawn = this.getRevives();
+
+		if (toSpawn != null) {
+			final MapleMap reviveMap = killer.getMap();
+			
+			TimerManager.getInstance().schedule(new Runnable() {
+				public void run() {
+					for(Integer mid : toSpawn) {
+						MapleMonster mob = MapleLifeFactory.getMonster(mid);
+						if (eventInstance != null) {
+							eventInstance.registerMonster(mob);
+						}
+						mob.setPosition(getPosition());
+						if (dropsDisabled()) {
+							mob.disableDrops();
+						}
+						reviveMap.spawnRevives(mob);
+					}
+				}
+			//}, this.getAnimationTime("die1") - MapleMonsterInformationProvider.APPROX_FADE_DELAY);
+			}, this.getAnimationTime("die1"));
+		}
+		if (eventInstance != null) {
+			eventInstance.unregisterMonster(this);
+		}
+		for (MonsterListener listener : listeners.toArray(new MonsterListener[listeners.size()])) {
+			listener.monsterKilled(this, highestDamageChar);
+		}
+		MapleCharacter ret = highestDamageChar;
+		highestDamageChar = null; // may not keep hard references to chars outside of PlayerStorage or MapleMap
+		return ret;
+                } else if (killer.getRebirths() == 2) {
+    // update exp
+		long totalBaseExpL = this.getExp() * ChannelServer.getInstance(killer.getClient().getChannel()).getExpRate2() * killer.getClient().getPlayer().hasEXPCard();
+                int totalBaseExp = (int) (Math.min(Integer.MAX_VALUE, totalBaseExpL));
+		AttackerEntry highest = null;
+		int highdamage = 0;
+		for (AttackerEntry attackEntry : attackers) {
+			if (attackEntry.getDamage() > highdamage) {
+				highest = attackEntry;
+				highdamage = attackEntry.getDamage();
+			}
+		}
+
+		for (AttackerEntry attackEntry : attackers) {
+			int baseExp = (int) Math.ceil(totalBaseExp * ((double) attackEntry.getDamage() / getMaxHp()));
+			attackEntry.killedMob(killer.getMap(), baseExp, attackEntry == highest);
+		}
+		if (this.getController() != null) { // this can/should only happen when a hidden gm attacks the monster
+			getController().getClient().getSession().write(
+				MaplePacketCreator.stopControllingMonster(this.getObjectId()));
+			getController().stopControllingMonster(this);
+		}
+		
+		// maybe this isn't the best place to do it, fixme then
+		final List<Integer> toSpawn = this.getRevives();
+
+		if (toSpawn != null) {
+			final MapleMap reviveMap = killer.getMap();
+			
+			TimerManager.getInstance().schedule(new Runnable() {
+				public void run() {
+					for(Integer mid : toSpawn) {
+						MapleMonster mob = MapleLifeFactory.getMonster(mid);
+						if (eventInstance != null) {
+							eventInstance.registerMonster(mob);
+						}
+						mob.setPosition(getPosition());
+						if (dropsDisabled()) {
+							mob.disableDrops();
+						}
+						reviveMap.spawnRevives(mob);
+					}
+				}
+			//}, this.getAnimationTime("die1") - MapleMonsterInformationProvider.APPROX_FADE_DELAY);
+			}, this.getAnimationTime("die1"));
+		}
+		if (eventInstance != null) {
+			eventInstance.unregisterMonster(this);
+		}
+		for (MonsterListener listener : listeners.toArray(new MonsterListener[listeners.size()])) {
+			listener.monsterKilled(this, highestDamageChar);
+		}
+		MapleCharacter ret = highestDamageChar;
+		highestDamageChar = null; // may not keep hard references to chars outside of PlayerStorage or MapleMap
+		return ret;
+                } else if (killer.getRebirths() == 3) {
+    // update exp
+		long totalBaseExpL = this.getExp() * ChannelServer.getInstance(killer.getClient().getChannel()).getExpRate3() * killer.getClient().getPlayer().hasEXPCard();
+                int totalBaseExp = (int) (Math.min(Integer.MAX_VALUE, totalBaseExpL));
+		AttackerEntry highest = null;
+		int highdamage = 0;
+		for (AttackerEntry attackEntry : attackers) {
+			if (attackEntry.getDamage() > highdamage) {
+				highest = attackEntry;
+				highdamage = attackEntry.getDamage();
+			}
+		}
+
+		for (AttackerEntry attackEntry : attackers) {
+			int baseExp = (int) Math.ceil(totalBaseExp * ((double) attackEntry.getDamage() / getMaxHp()));
+			attackEntry.killedMob(killer.getMap(), baseExp, attackEntry == highest);
+		}
+		if (this.getController() != null) { // this can/should only happen when a hidden gm attacks the monster
+			getController().getClient().getSession().write(
+				MaplePacketCreator.stopControllingMonster(this.getObjectId()));
+			getController().stopControllingMonster(this);
+		}
+		
+		// maybe this isn't the best place to do it, fixme then
+		final List<Integer> toSpawn = this.getRevives();
+
+		if (toSpawn != null) {
+			final MapleMap reviveMap = killer.getMap();
+			
+			TimerManager.getInstance().schedule(new Runnable() {
+				public void run() {
+					for(Integer mid : toSpawn) {
+						MapleMonster mob = MapleLifeFactory.getMonster(mid);
+						if (eventInstance != null) {
+							eventInstance.registerMonster(mob);
+						}
+						mob.setPosition(getPosition());
+						if (dropsDisabled()) {
+							mob.disableDrops();
+						}
+						reviveMap.spawnRevives(mob);
+					}
+				}
+			//}, this.getAnimationTime("die1") - MapleMonsterInformationProvider.APPROX_FADE_DELAY);
+			}, this.getAnimationTime("die1"));
+		}
+		if (eventInstance != null) {
+			eventInstance.unregisterMonster(this);
+		}
+		for (MonsterListener listener : listeners.toArray(new MonsterListener[listeners.size()])) {
+			listener.monsterKilled(this, highestDamageChar);
+		}
+		MapleCharacter ret = highestDamageChar;
+		highestDamageChar = null; // may not keep hard references to chars outside of PlayerStorage or MapleMap
+		return ret;
+                } else if (killer.getRebirths() == 4) {
+    // update exp
+		long totalBaseExpL = this.getExp() * ChannelServer.getInstance(killer.getClient().getChannel()).getExpRate4() * killer.getClient().getPlayer().hasEXPCard();
+                int totalBaseExp = (int) (Math.min(Integer.MAX_VALUE, totalBaseExpL));
+		AttackerEntry highest = null;
+		int highdamage = 0;
+		for (AttackerEntry attackEntry : attackers) {
+			if (attackEntry.getDamage() > highdamage) {
+				highest = attackEntry;
+				highdamage = attackEntry.getDamage();
+			}
+		}
+
+		for (AttackerEntry attackEntry : attackers) {
+			int baseExp = (int) Math.ceil(totalBaseExp * ((double) attackEntry.getDamage() / getMaxHp()));
+			attackEntry.killedMob(killer.getMap(), baseExp, attackEntry == highest);
+		}
+		if (this.getController() != null) { // this can/should only happen when a hidden gm attacks the monster
+			getController().getClient().getSession().write(
+				MaplePacketCreator.stopControllingMonster(this.getObjectId()));
+			getController().stopControllingMonster(this);
+		}
+		
+		// maybe this isn't the best place to do it, fixme then
+		final List<Integer> toSpawn = this.getRevives();
+
+		if (toSpawn != null) {
+			final MapleMap reviveMap = killer.getMap();
+			
+			TimerManager.getInstance().schedule(new Runnable() {
+				public void run() {
+					for(Integer mid : toSpawn) {
+						MapleMonster mob = MapleLifeFactory.getMonster(mid);
+						if (eventInstance != null) {
+							eventInstance.registerMonster(mob);
+						}
+						mob.setPosition(getPosition());
+						if (dropsDisabled()) {
+							mob.disableDrops();
+						}
+						reviveMap.spawnRevives(mob);
+					}
+				}
+			//}, this.getAnimationTime("die1") - MapleMonsterInformationProvider.APPROX_FADE_DELAY);
+			}, this.getAnimationTime("die1"));
+		}
+		if (eventInstance != null) {
+			eventInstance.unregisterMonster(this);
+		}
+		for (MonsterListener listener : listeners.toArray(new MonsterListener[listeners.size()])) {
+			listener.monsterKilled(this, highestDamageChar);
+		}
+		MapleCharacter ret = highestDamageChar;
+		highestDamageChar = null; // may not keep hard references to chars outside of PlayerStorage or MapleMap
+		return ret;
+                } else if (killer.getRebirths() == 5) {
+    // update exp
+		long totalBaseExpL = this.getExp() * ChannelServer.getInstance(killer.getClient().getChannel()).getExpRate5() * killer.getClient().getPlayer().hasEXPCard();
+                int totalBaseExp = (int) (Math.min(Integer.MAX_VALUE, totalBaseExpL));
+		AttackerEntry highest = null;
+		int highdamage = 0;
+		for (AttackerEntry attackEntry : attackers) {
+			if (attackEntry.getDamage() > highdamage) {
+				highest = attackEntry;
+				highdamage = attackEntry.getDamage();
+			}
+		}
+
+		for (AttackerEntry attackEntry : attackers) {
+			int baseExp = (int) Math.ceil(totalBaseExp * ((double) attackEntry.getDamage() / getMaxHp()));
+			attackEntry.killedMob(killer.getMap(), baseExp, attackEntry == highest);
+		}
+		if (this.getController() != null) { // this can/should only happen when a hidden gm attacks the monster
+			getController().getClient().getSession().write(
+				MaplePacketCreator.stopControllingMonster(this.getObjectId()));
+			getController().stopControllingMonster(this);
+		}
+		
+		// maybe this isn't the best place to do it, fixme then
+		final List<Integer> toSpawn = this.getRevives();
+
+		if (toSpawn != null) {
+			final MapleMap reviveMap = killer.getMap();
+			
+			TimerManager.getInstance().schedule(new Runnable() {
+				public void run() {
+					for(Integer mid : toSpawn) {
+						MapleMonster mob = MapleLifeFactory.getMonster(mid);
+						if (eventInstance != null) {
+							eventInstance.registerMonster(mob);
+						}
+						mob.setPosition(getPosition());
+						if (dropsDisabled()) {
+							mob.disableDrops();
+						}
+						reviveMap.spawnRevives(mob);
+					}
+				}
+			//}, this.getAnimationTime("die1") - MapleMonsterInformationProvider.APPROX_FADE_DELAY);
+			}, this.getAnimationTime("die1"));
+		}
+		if (eventInstance != null) {
+			eventInstance.unregisterMonster(this);
+		}
+		for (MonsterListener listener : listeners.toArray(new MonsterListener[listeners.size()])) {
+			listener.monsterKilled(this, highestDamageChar);
+		}
+		MapleCharacter ret = highestDamageChar;
+		highestDamageChar = null; // may not keep hard references to chars outside of PlayerStorage or MapleMap
+		return ret;
+}
+        return null;
+        }
 
 	public boolean isAlive() {
 		return this.hp > 0;

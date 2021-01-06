@@ -103,7 +103,7 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 	private PlayerStorage players = new PlayerStorage();
 	// private Map<String, MapleCharacter> clients = new LinkedHashMap<String, MapleCharacter>();
 	private String serverMessage;
-	private int expRate;
+	private int expRate, expRate1, expRate2, expRate3, expRate4, expRate5;
 	private int mesoRate;
 	private int dropRate;
 	private int bossdropRate;
@@ -185,6 +185,11 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 						wci = worldRegistry.registerChannelServer(key, cwi);
 						props = wci.getGameProperties();
 						expRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.exp"));
+						expRate1 = Integer.parseInt(props.getProperty("net.sf.odinms.world.exp1"));
+						expRate2 = Integer.parseInt(props.getProperty("net.sf.odinms.world.exp2"));
+						expRate3 = Integer.parseInt(props.getProperty("net.sf.odinms.world.exp3"));
+						expRate4 = Integer.parseInt(props.getProperty("net.sf.odinms.world.exp4"));
+						expRate5 = Integer.parseInt(props.getProperty("net.sf.odinms.world.exp5"));
 						mesoRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.meso"));
 						dropRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.drop"));
 						bossdropRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.bossdrop"));
@@ -222,6 +227,11 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
                         wci = worldRegistry.registerChannelServer(key, cwi);
 			props = wci.getGameProperties();
 			expRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.exp"));
+			expRate1 = Integer.parseInt(props.getProperty("net.sf.odinms.world.exp1"));
+			expRate2 = Integer.parseInt(props.getProperty("net.sf.odinms.world.exp2"));
+			expRate3 = Integer.parseInt(props.getProperty("net.sf.odinms.world.exp3"));
+			expRate4 = Integer.parseInt(props.getProperty("net.sf.odinms.world.exp4"));
+			expRate5 = Integer.parseInt(props.getProperty("net.sf.odinms.world.exp5"));
 			mesoRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.meso"));
 			dropRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.drop"));
 			bossdropRate = Integer.parseInt(props.getProperty("net.sf.odinms.world.bossdrop"));
@@ -458,7 +468,27 @@ public class ChannelServer implements Runnable, ChannelServerMBean {
 	public int getExpRate() {
 		return expRate;
 	}
+        
+	public int getExpRate1() {
+		return expRate1;
+	}
+        
+        public int getExpRate2() {
+		return expRate2;
+	}
+        
+        public int getExpRate3() {
+		return expRate3;
+	}
+        
+        public int getExpRate4() {
+		return expRate4;
+	}
 	
+        public int getExpRate5() {
+		return expRate5;
+	}
+        
 	@Override
 	public void setExpRate(int expRate) {
 		this.expRate = expRate;

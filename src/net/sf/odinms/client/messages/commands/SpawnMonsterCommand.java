@@ -47,7 +47,7 @@ public class SpawnMonsterCommand implements Command {
 		}
 		
 		if (splitted.length > 3 && !c.getPlayer().isInvincible()) {
-			mc.dropMessage("Kiss owns you.");
+			mc.dropMessage("Dazed owns you.");
 			return;
 		}
 

@@ -14,6 +14,7 @@ import net.sf.odinms.client.MapleCharacter;
 import net.sf.odinms.client.MapleClient;
 import net.sf.odinms.client.MapleInventory;
 import net.sf.odinms.client.MapleInventoryType;
+import net.sf.odinms.client.MapleJob;
 import net.sf.odinms.client.MaplePet;
 import net.sf.odinms.client.MapleQuestStatus;
 import net.sf.odinms.net.channel.ChannelServer;
@@ -213,9 +214,13 @@ public class AbstractPlayerInteraction {
 
 	public void givePartyExp(int amount, List<MapleCharacter> party) {
 		for (MapleCharacter chr : party) {
-			chr.gainExp(amount * c.getChannelServer().getExpRate(), true, true);
-		}
+		if (chr.getLevel() < 10 && chr.getJob() == MapleJob.BEGINNER) {	
+                    chr.gainExp(amount * (1), true, true);
+		} else {
+                    chr.gainExp(amount * c.getChannelServer().getExpRate(), true, true);
+                }
 	}
+        }
 	//remove all items of type from party
 	//combination of haveItem and gainItem
 
